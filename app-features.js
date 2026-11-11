@@ -644,3 +644,42 @@
   }
 
 })();
+
+
+// Sub-barra de navegação móvel com rolagem horizontal suave (Regras Mestres 7, 9, 11)
+function initMobileSubBar() {
+  if (document.getElementById('mobile-subbar-nav')) return;
+  const header = document.querySelector('header') || document.querySelector('div[class*="z-50"][class*="border-b"]');
+  if (!header) return;
+
+  const navItems = [
+    ["COMO FUNCIONA", "#como-funciona"],
+    ["A MATEMÁTICA DO TEMPO", "#estrategia-agio"],
+    ["2 FORMAS DE USAR", "#renda-passiva"],
+    ["SIMULADOR", "#simulador"],
+    ["O VÍDEO", "#video"],
+    ["SOBRE A ERLANE", "#sobre"],
+    ["DÚVIDAS (FAQ)", "#faq"],
+    ["📲 DIAGNÓSTICO", "#diagnostico"]
+  ];
+
+  const subbar = document.createElement('nav');
+  subbar.id = 'mobile-subbar-nav';
+  subbar.className = 'flex items-center gap-2 overflow-x-auto whitespace-nowrap px-3 py-2 border-b border-[#C9A86A]/40 bg-[#FAF6EF] xl:hidden z-40 sticky top-[72px] shadow-sm';
+  subbar.style.scrollbarWidth = 'none';
+  subbar.style.webkitOverflowScrolling = 'touch';
+
+  subbar.innerHTML = navItems.map(([label, href]) => {
+    const isCta = href === '#diagnostico';
+    if (isCta) {
+      return `<a href="${href}" class="inline-flex items-center gap-1 rounded-full border border-[#C9A86A] bg-white px-3 py-1 text-[11px] font-extrabold text-[#5A1220] shadow-sm shrink-0 transition hover:bg-[#5A1220] hover:text-white">${label}</a>`;
+    }
+    return `<a href="${href}" class="inline-flex items-center rounded-lg px-2.5 py-1 text-[11px] font-bold text-[#5A1220] hover:text-[#C9A86A] hover:bg-white/60 transition shrink-0 uppercase tracking-wider">${label}</a>`;
+  }).join('');
+
+  header.insertAdjacentElement('afterend', subbar);
+}
+
+window.addEventListener("DOMContentLoaded", initMobileSubBar);
+setTimeout(initMobileSubBar, 300);
+setTimeout(initMobileSubBar, 1200);

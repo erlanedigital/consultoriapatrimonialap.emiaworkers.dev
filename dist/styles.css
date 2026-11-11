@@ -1,3 +1,131 @@
+
+/* ==========================================================================
+   TIPOGRAFIA DE ALTO PADRÃO (FRAUNCES, CINZEL, MANROPE, PLUS JAKARTA SANS)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500;1,9..144,600&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+html, body {
+  font-family: 'Manrope', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  color: #2A181C;
+  background-color: #FAF6EF;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, .font-serif, .font-serif-display {
+  font-family: 'Fraunces', 'Cinzel', Georgia, serif !important;
+}
+
+/* Eyebrows e badges luxuosos com kerning nobre */
+p[class*="tracking-"],
+p.text-xs.font-bold,
+.eyebrow,
+.uppercase.tracking-widest {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+}
+
+/* ==========================================================================
+   HEADER COM LINHA DOURADA E MENU NOVO
+   ========================================================================== */
+header,
+div[class*="z-50"][class*="border-b"] {
+  border-bottom: 2px solid #C9A86A !important;
+  background-color: rgba(250, 246, 239, 0.98) !important;
+}
+
+nav[aria-label="Navegação principal"] a {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: #5A1220 !important;
+  transition: all 0.2s ease !important;
+}
+
+nav[aria-label="Navegação principal"] a:hover {
+  color: #C9A86A !important;
+}
+
+/* Botão Pill Diagnóstico Gratuito com borda dourada */
+.nav-cta-pill {
+  border: 1.5px solid #C9A86A !important;
+  background-color: #FFFFFF !important;
+  color: #5A1220 !important;
+  border-radius: 9999px !important;
+  padding: 8px 18px !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  box-shadow: 0 2px 8px rgba(201, 168, 106, 0.2) !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+}
+
+.nav-cta-pill:hover {
+  background-color: #5A1220 !important;
+  color: #FFFFFF !important;
+  border-color: #5A1220 !important;
+  box-shadow: 0 4px 14px rgba(90, 18, 32, 0.3) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ==========================================================================
+   SEÇÃO "PARA QUEM É" - FUNDO BORDÔ IMPERIAL (#5A1220)
+   ========================================================================== */
+#para-quem {
+  background-color: #5A1220 !important;
+  color: #FFFFFF !important;
+  position: relative !important;
+}
+
+#para-quem h2,
+#para-quem .font-serif-display {
+  color: #FFFFFF !important;
+}
+
+#para-quem em,
+#para-quem .italic {
+  color: #E3CA8A !important;
+}
+
+#para-quem p[class*="tracking-"],
+#para-quem .text-[#9B7A40] {
+  color: #E3CA8A !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.22em !important;
+}
+
+#para-quem p.text-lg,
+#para-quem p.leading-relaxed {
+  color: #F3E7C4 !important;
+}
+
+#para-quem .rounded-2xl {
+  background-color: #FFFFFF !important;
+  color: #3D0C16 !important;
+  border: 1.5px solid #C9A86A !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+  transition: all 0.25s ease !important;
+}
+
+#para-quem .rounded-2xl:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(201, 168, 106, 0.35) !important;
+  border-color: #E3CA8A !important;
+}
+
+#para-quem .rounded-2xl svg {
+  color: #C9A86A !important;
+}
+
 /* ==========================================================================
    SEU PATRIMÔNIO NO BRASIL — CONSULTORIA PATRIMONIAL COM ERLANE MOTA
    Design System: Marsala Imperial (#5A1220), Dourado Champanhe (#D4AF37),
