@@ -1,6 +1,7 @@
 /**
- * APP-FEATURES.JS — Consultoria Patrimonial com Erlane Mota (Aposentadoria & Renda Passiva)
- * Sincronização Automática de Leads (/api/leads), Painel Admin Blindado,
+ * APP-FEATURES.JS — Consultoria Patrimonial com Erlane Mota
+ * Simulador de Parcelas Reduzidas Oficial (Padrão consultoriapatrimonialbe),
+ * Sincronização de Leads (/api/leads), Painel Admin Blindado,
  * Exportação CSV/JSON, Webhook para App Principal & UX de Luxo.
  */
 
@@ -18,48 +19,306 @@
       .replace(/'/g, '&#039;');
   }
 
-  // =========================================================================
-  // 1. SISTEMA DE TOASTS DE LUXO (MARSALA & DOURADO)
-  // =========================================================================
-  window.showToast = function(msg, type) {
-    var toast = document.getElementById('erlane-toast');
-    if (!toast) {
-      toast = document.createElement('div');
-      toast.id = 'erlane-toast';
-      toast.style.cssText = 'position: fixed; bottom: 24px; right: 24px; z-index: 99999; padding: 14px 22px; border-radius: 12px; font-size: 14px; font-weight: 600; font-family: "Manrope", sans-serif; box-shadow: 0 10px 25px rgba(0,0,0,0.25); transition: all 0.3s ease; transform: translateY(100px); opacity: 0; pointer-events: none; max-width: 90vw;';
-      document.body.appendChild(toast);
-    }
+  // ==========================================================================
+  // 1. DADOS DE MOEDAS E COTAÇÕES CONSERVADORAS
+  // ==========================================================================
+  var CURRENCIES = {
+    EUR: { name: 'Euro', symbol: '€', flag: '🇪🇺', rate: 5.85 },
+    USD: { name: 'Dólar Americano', symbol: '$', flag: '🇺🇸', rate: 5.60 },
+    GBP: { name: 'Libra Esterlina', symbol: '£', flag: '🇬🇧', rate: 7.05 },
+    CHF: { name: 'Franco Suíço', symbol: 'CHF', flag: '🇨🇭', rate: 6.30 },
+    JPY: { name: 'Iene Japonês', symbol: '¥', flag: '🇯🇵', rate: 0.037 },
+    AUD: { name: 'Dólar Australiano', symbol: 'A$', flag: '🇦🇺', rate: 3.70 },
+    CAD: { name: 'Dólar Canadense', symbol: 'C$', flag: '🇨🇦', rate: 4.10 }
+  };
 
-    if (type === 'success') {
-      toast.style.background = '#1E3A2F';
-      toast.style.color = '#A3E635';
-      toast.style.border = '1px solid #4D7C0F';
-    } else if (type === 'error') {
-      toast.style.background = '#450A0A';
-      toast.style.color = '#FCA5A5';
-      toast.style.border = '1px solid #DC2626';
+  var state = {
+    credit: 100000,
+    months: 220,
+    currency: 'EUR'
+  };
+
+  function calculateForeign(valBrl, currCode) {
+    var c = CURRENCIES[currCode] || CURRENCIES.EUR;
+    if (!c || !c.rate) return 0;
+    return valBrl / c.rate;
+  }
+
+  function calculate(credit, months) {
+    // 24% de taxa total sobre o crédito dividido pelos meses
+    var adminFeeMonthly = (credit * 0.24) / months;
+    // Metade da carta dividida pelos meses (parcela reduzida)
+    var amortReduced = (credit * 0.50) / months;
+    var reducedTotal = amortReduced + adminFeeMonthly;
+    // Parcela integral (após contemplação)
+    var integralTotal = (credit / months) + adminFeeMonthly;
+
+    return {
+      adminFeeMonthly: adminFeeMonthly,
+      amortReduced: amortReduced,
+      reducedTotal: reducedTotal,
+      integralTotal: integralTotal
+    };
+  }
+
+  // ==========================================================================
+  // 2. MONTAGEM E INJEÇÃO DO SIMULADOR NO LUGAR OFICIAL
+  // ==========================================================================
+  function injectSimulator() {
+    if (document.getElementById('simulador')) return;
+
+    var section = document.createElement('section');
+    section.id = 'simulador';
+    section.style.cssText = 'background: #FAF6EF; padding: 48px 0; border-top: 1px solid rgba(201,168,106,0.35); border-bottom: 1px solid rgba(201,168,106,0.35); position: relative; font-family: "Manrope", "Plus Jakarta Sans", system-ui, sans-serif; width: 100%; max-width: 100vw; overflow-x: hidden; box-sizing: border-box;';
+
+    section.innerHTML = [
+      '<div class="sim-container">',
+      '  <div style="text-align: center; max-width: 800px; margin: 0 auto 32px auto; padding: 0 10px;">',
+      '    <span style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border-radius: 999px; background: #5A1220; color: #F3E7C4; font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; border: 1px solid #C9A86A; box-shadow: 0 4px 14px rgba(90,18,32,0.15); margin: 0 auto;">',
+      '      <span>📊</span> SIMULADOR DE PARCELAS REDUZIDAS',
+      '    </span>',
+      '    <h2 style="font-family: Fraunces, Georgia, serif; font-size: clamp(24px, 4vw, 40px); font-weight: 600; color: #5A1220; margin: 16px auto 10px auto; line-height: 1.25; text-align: center;">',
+      '      Simule sua carta de crédito e veja o valor na sua moeda',
+      '    </h2>',
+      '    <div style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 4px 14px; border-radius: 999px; background: rgba(90, 18, 32, 0.08); color: #5A1220; font-size: 11px; font-weight: 700; border: 1px solid rgba(201,168,106,0.4); margin: 6px auto 0 auto; text-align: center;">ℹ️ Valores estimados e aproximados conforme taxa de câmbio comercial e tabela vigente</div>',
+      '  </div>',
+      '  <div class="sim-card">',
+      '    <div class="sim-grid-layout">',
+      '      <div style="display: flex; flex-direction: column; gap: 22px; justify-content: center; width: 100%; box-sizing: border-box;">',
+      '        <div>',
+      '          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 4px;">',
+      '            <label style="font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #5A1220;">1. Valor da Carta de Crédito:</label>',
+      '            <span id="sim-credit-text" style="font-family: Fraunces, Georgia, serif; font-size: 21px; font-weight: 700; color: #5A1220;">R$ 100.000</span>',
+      '          </div>',
+      '          <div class="sim-credit-btns-row">',
+      '            <button type="button" onclick="window.setSimCredit(100000)" class="sim-c-btn active" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid #5A1220; background: #5A1220; color: #F3E7C4; cursor: pointer; transition: all 0.2s; width: 100%;">100 mil</button>',
+      '            <button type="button" onclick="window.setSimCredit(150000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s; width: 100%;">150 mil</button>',
+      '            <button type="button" onclick="window.setSimCredit(200000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s; width: 100%;">200 mil</button>',
+      '            <button type="button" onclick="window.setSimCredit(300000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s; width: 100%;">300 mil</button>',
+      '            <button type="button" onclick="window.setSimCredit(500000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s; width: 100%;">500 mil</button>',
+      '          </div>',
+      '          <input type="range" id="sim-range-credit" min="80000" max="1000000" step="10000" value="100000" oninput="window.setSimCreditFromSlider(this.value)" style="width: 100%; accent-color: #C9A86A; cursor: pointer; height: 6px;">',
+      '          <div style="display: flex; justify-content: space-between; font-size: 11px; color: #8A6E3E; margin-top: 4px; font-weight: 600;">',
+      '            <span>R$ 80 mil</span>',
+      '            <span>R$ 500 mil</span>',
+      '            <span>R$ 1 Milhão</span>',
+      '          </div>',
+      '        </div>',
+      '        <div>',
+      '          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 4px;">',
+      '            <label style="font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #5A1220;">2. Prazo do Consórcio (até 220 meses):</label>',
+      '            <span id="sim-months-text" style="font-size: 15px; font-weight: 800; color: #5A1220;">220 meses</span>',
+      '          </div>',
+      '          <div class="sim-months-btns-row">',
+      '            <button type="button" onclick="window.setSimMonths(150)" class="sim-m-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s; width: 100%;">150 m</button>',
+      '            <button type="button" onclick="window.setSimMonths(180)" class="sim-m-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s; width: 100%;">180 m</button>',
+      '            <button type="button" onclick="window.setSimMonths(200)" class="sim-m-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s; width: 100%;">200 m</button>',
+      '            <button type="button" onclick="window.setSimMonths(220)" class="sim-m-btn active" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid #5A1220; background: #5A1220; color: #F3E7C4; cursor: pointer; transition: all 0.2s; width: 100%;">220 meses</button>',
+      '          </div>',
+      '        </div>',
+      '        <div>',
+      '          <label style="display: block; font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #5A1220; margin-bottom: 8px;">3. Sua moeda de preferência:</label>',
+      '          <select id="sim-currency-sel" onchange="window.setSimCurrency(this.value)" style="width: 100%; background: #FAF6EF; border: 1.5px solid #C9A86A; border-radius: 12px; padding: 12px 14px; font-size: 14px; font-weight: 700; color: #5A1220; outline: none; box-sizing: border-box; cursor: pointer;">',
+      '            <option value="EUR">🇪🇺 Euro (EUR €)</option>',
+      '            <option value="USD">🇺🇸 Dólar Americano (USD $)</option>',
+      '            <option value="GBP">🇬🇧 Libra Esterlina (GBP £)</option>',
+      '            <option value="CHF">🇨🇭 Franco Suíço (CHF)</option>',
+      '            <option value="JPY">🇯🇵 Iene Japonês (JPY ¥)</option>',
+      '            <option value="AUD">🇦🇺 Dólar Australiano (AUD A$)</option>',
+      '            <option value="CAD">🇨🇦 Dólar Canadense (CAD C$)</option>',
+      '          </select>',
+      '        </div>',
+      '      </div>',
+      '      <div style="background: linear-gradient(145deg, #5A1220 0%, #3D0C16 100%); border-radius: 20px; border: 2px solid #C9A86A; padding: clamp(20px, 3.5vw, 32px); color: #FFFFFF; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; box-shadow: 0 12px 35px rgba(90,18,32,0.25); box-sizing: border-box; width: 100%;">',
+      '        <div>',
+      '          <div style="text-align: center; margin-bottom: 14px;"><div id="sim-badge-reduced" style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 6px 18px; border-radius: 999px; background: #C9A86A; color: #5A1220; font-size: 12.5px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; box-shadow: 0 2px 8px rgba(0,0,0,0.15); margin: 0 auto;">★ PARCELA REDUZIDA ATÉ A CONTEMPLAÇÃO</div></div>',
+      '          <div style="font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 4px; text-align: center;">Seu investimento mensal em Reais:</div>',
+      '          <div id="sim-reais-val" style="font-family: Fraunces, Georgia, serif; font-size: clamp(26px, 4vw, 38px); font-weight: 700; color: #F3E7C4; text-align: center;">R$ 336,36 <span style="font-size: 14px; font-weight: normal; color: rgba(255,255,255,0.7);">/mês</span></div>',
+      '        </div>',
+      '        <div style="padding-top: 14px; border-top: 1px solid rgba(201,168,106,0.3);">',
+      '          <div id="sim-foreign-title" style="font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #C9A86A; margin-bottom: 2px; text-align: center;">Equivalente no exterior em Euro:</div>',
+      '          <div id="sim-foreign-val" style="font-family: Fraunces, Georgia, serif; font-size: clamp(32px, 6vw, 46px); font-weight: 800; color: #F3E7C4; line-height: 1.1; text-align: center;">€ 57,50 <span style="font-size: 15px; font-weight: normal; color: rgba(255,255,255,0.7);">/mês</span></div>',
+      '          <div style="font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 6px; line-height: 1.5; text-align: center;">Um esforço financeiro acessível para você construir patrimônio sólido, multiplicar seu capital com estratégia de ágio ou gerar renda passiva vitalícia.</div>',
+      '        </div>',
+      '        <div style="background: rgba(255,255,255,0.06); border-radius: 12px; padding: 10px 14px; font-size: 11px; color: rgba(255,255,255,0.75); line-height: 1.4; text-align: center;">* Valores aproximados com base em taxas médias e tabela vigente. Na contemplação, a parcela passa a ser no valor integral.</div>',
+      '        <div>',
+      '          <button type="button" onclick="window.sendSimToWhatsApp()" style="width: 100%; box-sizing: border-box; padding: 15px 18px; border-radius: 999px; background: #C9A86A; color: #5A1220; font-size: 14px; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); margin: 0 auto;">',
+      '            <span>Simular Esta Carta no WhatsApp</span>',
+      '            <span style="font-size: 18px;">➔</span>',
+      '          </button>',
+      '        </div>',
+      '      </div>',
+      '    </div>',
+      '    <div style="margin-top: 32px; padding-top: 20px; border-top: 1px solid rgba(201,168,106,0.3); width: 100%; box-sizing: border-box;">',
+      '      <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #5A1220; margin-bottom: 12px; text-align: center;">🌐 Comparativo do Esforço Mensal Reduzido em Todas as Moedas:</div>',
+      '      <div id="sim-multi-currency-grid" class="sim-multicurrency-grid-row"></div>',
+      '    </div>',
+      '  </div>',
+      '</div>'
+    ].join('\n');
+
+    // Montagem no host específico
+    var host = document.getElementById('simulador-host');
+    if (host && host.parentNode) {
+      host.parentNode.insertBefore(section, host);
+      host.remove();
     } else {
-      toast.style.background = '#320710';
-      toast.style.color = '#F3E7C4';
-      toast.style.border = '1px solid #D4AF37';
+      var secTarget = document.getElementById('estrategia-agio');
+      if (secTarget) {
+        secTarget.appendChild(section);
+      } else {
+        var footer = document.querySelector('footer');
+        if (footer && footer.parentNode) {
+          footer.parentNode.insertBefore(section, footer);
+        } else {
+          document.body.appendChild(section);
+        }
+      }
     }
 
-    toast.textContent = msg;
-    toast.style.transform = 'translateY(0)';
-    toast.style.opacity = '1';
+    updateSimulatorUI();
+  }
 
-    clearTimeout(window._toastTimeout);
-    window._toastTimeout = setTimeout(function() {
-      toast.style.transform = 'translateY(100px)';
-      toast.style.opacity = '0';
-    }, 4000);
+  function updateSimulatorUI() {
+    var calc = calculate(state.credit, state.months);
+    var curr = CURRENCIES[state.currency] || CURRENCIES.EUR;
+
+    // 1. Atualizar texto do crédito
+    var cText = document.getElementById('sim-credit-text');
+    if (cText) cText.textContent = 'R$ ' + state.credit.toLocaleString('pt-BR');
+
+    // 2. Atualizar texto do prazo
+    var mText = document.getElementById('sim-months-text');
+    if (mText) mText.textContent = state.months + ' meses';
+
+    // 3. Atualizar valor em Reais (Parcela Reduzida)
+    var rVal = document.getElementById('sim-reais-val');
+    if (rVal) {
+      rVal.innerHTML = 'R$ ' + calc.reducedTotal.toFixed(2).replace('.', ',') + ' <span style="font-size: 14px; font-weight: normal; color: rgba(255,255,255,0.7);">/mês</span>';
+    }
+
+    // 4. Atualizar TÍTULO da moeda estrangeira
+    var fTitle = document.getElementById('sim-foreign-title');
+    if (fTitle) {
+      fTitle.textContent = 'Equivalente no exterior em ' + curr.name + ':';
+    }
+
+    // 5. Atualizar VALOR da moeda estrangeira
+    var fVal = calculateForeign(calc.reducedTotal, state.currency);
+    var fStr = (state.currency === 'JPY') 
+      ? Math.round(fVal).toLocaleString('pt-BR') 
+      : fVal.toFixed(2).replace('.', ',');
+
+    var fValEl = document.getElementById('sim-foreign-val');
+    if (fValEl) {
+      fValEl.innerHTML = curr.symbol + ' ' + fStr + ' <span style="font-size: 16px; font-weight: normal; color: rgba(255,255,255,0.7);">/mês</span>';
+    }
+
+    // 6. Atualizar slider e select de moeda
+    var range = document.getElementById('sim-range-credit');
+    if (range && Number(range.value) !== state.credit) range.value = state.credit;
+
+    var sel = document.getElementById('sim-currency-sel');
+    if (sel && sel.value !== state.currency) sel.value = state.currency;
+
+    // 7. Atualizar grade comparativa multimoedas com clique interativo
+    var grid = document.getElementById('sim-multi-currency-grid');
+    if (grid) {
+      grid.innerHTML = Object.keys(CURRENCIES).map(function(k) {
+        var c = CURRENCIES[k];
+        var v = calculateForeign(calc.reducedTotal, k);
+        var s = (k === 'JPY') ? Math.round(v).toLocaleString('pt-BR') : v.toFixed(0);
+        var isSel = (k === state.currency);
+        return '<div onclick="window.setSimCurrency(\'' + k + '\')" style="cursor: pointer; transition: all 0.2s; background: ' + (isSel ? '#5A1220' : '#FFFFFF') + '; border: 1.5px solid ' + (isSel ? '#C9A86A' : 'rgba(201,168,106,0.35)') + '; border-radius: 14px; padding: 10px 8px; text-align: center; color: ' + (isSel ? '#F3E7C4' : '#5A1220') + '; box-shadow: ' + (isSel ? '0 6px 18px rgba(90,18,32,0.25)' : '0 2px 6px rgba(0,0,0,0.03)') + '; user-select: none;">' +
+          '<div style="font-size: 11px; font-weight: 800; text-transform: uppercase;">' + c.flag + ' ' + k + '</div>' +
+          '<div style="font-family: Fraunces, Georgia, serif; font-size: 17px; font-weight: 700; margin-top: 4px;">' + c.symbol + ' ' + s + '<span style="font-size: 11px; font-weight: normal; opacity: 0.8;">/mês</span></div>' +
+        '</div>';
+      }).join('');
+    }
+  }
+
+  window.setSimCredit = function(val) {
+    state.credit = Number(val);
+    document.querySelectorAll('.sim-c-btn').forEach(function(b) {
+      var isTarget = b.textContent.includes(String(val / 1000));
+      b.style.background = isTarget ? '#5A1220' : '#FAF6EF';
+      b.style.color = isTarget ? '#F3E7C4' : '#5A1220';
+      b.style.borderColor = isTarget ? '#5A1220' : 'rgba(201,168,106,0.4)';
+    });
+    updateSimulatorUI();
+  };
+
+  window.setSimCreditFromSlider = function(val) {
+    state.credit = Number(val);
+    document.querySelectorAll('.sim-c-btn').forEach(function(b) {
+      var isTarget = b.textContent.includes(String(val / 1000));
+      b.style.background = isTarget ? '#5A1220' : '#FAF6EF';
+      b.style.color = isTarget ? '#F3E7C4' : '#5A1220';
+      b.style.borderColor = isTarget ? '#5A1220' : 'rgba(201,168,106,0.4)';
+    });
+    updateSimulatorUI();
+  };
+
+  window.setSimMonths = function(val) {
+    state.months = Number(val);
+    document.querySelectorAll('.sim-m-btn').forEach(function(b) {
+      var isTarget = b.textContent.includes(String(val));
+      b.style.background = isTarget ? '#5A1220' : '#FAF6EF';
+      b.style.color = isTarget ? '#F3E7C4' : '#5A1220';
+      b.style.borderColor = isTarget ? '#5A1220' : 'rgba(201,168,106,0.4)';
+    });
+    updateSimulatorUI();
+  };
+
+  window.setSimCurrency = function(val) {
+    if (!CURRENCIES[val]) return;
+    state.currency = val;
+    updateSimulatorUI();
+  };
+
+  window.sendSimToWhatsApp = function() {
+    var res = calculate(state.credit, state.months);
+    var curr = CURRENCIES[state.currency] || CURRENCIES.EUR;
+    var fVal = res.reducedTotal / curr.rate;
+    var fStr = (state.currency === 'JPY') ? Math.round(fVal).toLocaleString('pt-BR') : fVal.toFixed(2).replace('.', ',');
+
+    var msg = [
+      'Olá, Erlane! Fiz uma simulação no seu site oficial com parcela reduzida:',
+      '',
+      '• *Carta de Crédito:* R$ ' + state.credit.toLocaleString('pt-BR'),
+      '• *Prazo do Plano:* ' + state.months + ' meses',
+      '• *Parcela Reduzida (até a contemplação):* R$ ' + res.reducedTotal.toFixed(2).replace('.', ',') + ' / mês',
+      '• *Equivalente em ' + curr.name + ':* ' + curr.symbol + ' ' + fStr + ' / mês',
+      '',
+      'Gostaria de receber meu diagnóstico gratuito e saber mais sobre as melhores cartas disponíveis!'
+    ].join('\n');
+
+    // Despacha lead para a API e abre WhatsApp
+    try {
+      fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Interessado na Simulação',
+          phone: '',
+          goal: 'Carta R$ ' + state.credit.toLocaleString('pt-BR') + ' em ' + state.months + 'm',
+          credit: state.credit,
+          months: state.months,
+          reducedMonthly: res.reducedTotal,
+          currency: state.currency,
+          foreignMonthly: fVal,
+          source: 'Simulador de Parcelas Reduzidas'
+        })
+      }).catch(function(){});
+    } catch(e) {}
+
+    window.open('https://wa.me/5538997373140?text=' + encodeURIComponent(msg), '_blank');
   };
 
   // =========================================================================
-  // 2. CAPTURA AUTOMÁTICA DE LEADS DO FORMULÁRIO DE DIAGNÓSTICO
+  // 3. CAPTURA AUTOMÁTICA DE LEADS DO FORMULÁRIO DE DIAGNÓSTICO
   // =========================================================================
   function initLeadCapture() {
-    // Intercept form submission or clicks on WhatsApp buttons
     document.addEventListener('click', function(e) {
       var target = e.target.closest('button, a');
       if (!target) return;
@@ -89,14 +348,12 @@
             source: 'Website Oficial - Aposentadoria Patrimonial'
           };
 
-          // Evita duplicatas consecutivas
           if (!leads.length || leads[0].phone !== phone || leads[0].name !== name) {
             leads.unshift(newLead);
             if (leads.length > 500) leads.pop();
             localStorage.setItem('erlane_leads', JSON.stringify(leads));
           }
 
-          // Despacho assíncrono para a API REST do Cloudflare Worker
           try {
             var webhookUrl = localStorage.getItem('erlane_app_webhook_url') || '';
             var webhookToken = localStorage.getItem('erlane_app_webhook_token') || '';
@@ -122,7 +379,7 @@
   }
 
   // =========================================================================
-  // 3. PAINEL ADMINISTRATIVO INTERNO BLINDADO
+  // 4. PAINEL ADMINISTRATIVO INTERNO BLINDADO
   // =========================================================================
   function injectAdminModal() {
     if (document.getElementById('admin-modal')) return;
@@ -145,8 +402,8 @@
       '    <button onclick="window.closeAdminModal()" style="background: none; border: none; color: #FFFFFF; font-size: 24px; cursor: pointer; padding: 4px 8px; line-height: 1;">&times;</button>',
       '  </div>',
       '  <div style="padding: 16px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; flex-wrap: wrap; gap: 8px; background: rgba(29,10,16,0.6);">',
-      '    <button onclick="window.setAdminTab('leads')" id="tab-btn-leads" style="padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; border: none; background: #D4AF37; color: #1D0A10;">Leads Recebidos</button>',
-      '    <button onclick="window.setAdminTab('integration')" id="tab-btn-integration" style="padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: #FFFFFF;">Integração com App</button>',
+      '    <button onclick="window.setAdminTab(\'leads\')" id="tab-btn-leads" style="padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; border: none; background: #D4AF37; color: #1D0A10;">Leads Recebidos</button>',
+      '    <button onclick="window.setAdminTab(\'integration\')" id="tab-btn-integration" style="padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: #FFFFFF;">Integração com App</button>',
       '  </div>',
       '  <div id="admin-tab-leads" style="padding: 20px 24px; overflow-y: auto; flex: 1;">',
       '    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">',
@@ -188,12 +445,10 @@
       '    </div>',
       '  </div>',
       '</div>'
-    ].join('
-');
+    ].join('\n');
 
     document.body.appendChild(modal);
 
-    // Carrega valores salvos de Webhook
     var savedUrl = localStorage.getItem('erlane_app_webhook_url') || '';
     var savedToken = localStorage.getItem('erlane_app_webhook_token') || '';
     var urlInput = document.getElementById('app-webhook-url');
@@ -252,7 +507,7 @@
       return;
     }
 
-    container.innerHTML = leads.map(function(l, i) {
+    container.innerHTML = leads.map(function(l) {
       return [
         '<div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">',
         '  <div>',
@@ -271,7 +526,7 @@
   window.exportLeadsCSV = function() {
     var leads = JSON.parse(localStorage.getItem('erlane_leads') || '[]');
     if (!leads.length) {
-      window.showToast('Nenhum lead para exportar.', 'error');
+      alert('Nenhum lead para exportar.');
       return;
     }
     var csv = 'Nome,Telefone,Cidade,Objetivo,Data\n';
@@ -288,7 +543,6 @@
     a.href = url;
     a.download = 'leads-aposentadoria-erlane-mota-' + new Date().toISOString().slice(0,10) + '.csv';
     a.click();
-    window.showToast('Arquivo CSV baixado com sucesso!', 'success');
   };
 
   window.exportLeadsJSON = function() {
@@ -299,23 +553,21 @@
     a.href = url;
     a.download = 'leads-aposentadoria-erlane-mota-' + new Date().toISOString().slice(0,10) + '.json';
     a.click();
-    window.showToast('Arquivo JSON baixado com sucesso!', 'success');
   };
 
   window.clearAllLeads = function() {
     if (confirm('Tem certeza que deseja limpar todos os leads locais?')) {
       localStorage.removeItem('erlane_leads');
       window.renderAdminLeads();
-      window.showToast('Lista de leads limpa.', 'info');
     }
   };
 
   window.copyApiPullUrl = function() {
     var url = window.location.origin + '/api/leads?token=erlane2026';
     navigator.clipboard.writeText(url).then(function() {
-      window.showToast('URL da API copiada! Cole no seu App para puxar os leads.', 'success');
+      alert('URL da API copiada! Cole no seu App para puxar os leads.');
     }).catch(function(){
-      window.showToast('URL: ' + url, 'info');
+      alert('URL: ' + url);
     });
   };
 
@@ -324,20 +576,16 @@
     var token = (document.getElementById('app-webhook-token') || {}).value || '';
     localStorage.setItem('erlane_app_webhook_url', url);
     localStorage.setItem('erlane_app_webhook_token', token);
-    window.showToast('Configurações de integração salvas com sucesso!', 'success');
+    alert('Configurações salvas!');
   };
 
   window.testAppWebhook = function() {
     var url = (document.getElementById('app-webhook-url') || {}).value || '';
     var token = (document.getElementById('app-webhook-token') || {}).value || '';
     if (!url || !url.startsWith('http')) {
-      window.showToast('Informe uma URL de Webhook válida (começando com https://).', 'error');
+      alert('Informe uma URL de Webhook válida.');
       return;
     }
-    localStorage.setItem('erlane_app_webhook_url', url);
-    localStorage.setItem('erlane_app_webhook_token', token);
-    window.showToast('Enviando lead de teste para seu App...', 'info');
-
     fetch('/api/webhook/test', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -345,22 +593,17 @@
     })
     .then(function(r){ return r.json(); })
     .then(function(data){
-      if (data.success) {
-        window.showToast('✅ Conexão bem-sucedida! Seu App respondeu perfeitamente.', 'success');
-      } else {
-        window.showToast('⚠️ App respondeu: ' + (data.message || data.error), 'error');
-      }
+      alert(data.success ? 'Conexão confirmada com sucesso!' : 'Erro: ' + (data.message || data.error));
     })
     .catch(function(err){
-      window.showToast('Erro ao testar conexão: ' + err.message, 'error');
+      alert('Erro: ' + err.message);
     });
   };
 
   // =========================================================================
-  // 4. ATALHOS PARA ABERTURA DO PAINEL ADMIN
+  // 5. ATALHOS PARA O ADMIN & INICIALIZAÇÃO
   // =========================================================================
   function initAdminTriggers() {
-    // A. Atalho de teclado Ctrl + Shift + A
     window.addEventListener('keydown', function(e) {
       if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
         e.preventDefault();
@@ -368,14 +611,10 @@
       }
     });
 
-    // B. Query param ?admin=1
     if (window.location.search.indexOf('admin=1') !== -1) {
-      setTimeout(function() {
-        window.openAdminModal();
-      }, 500);
+      setTimeout(function() { window.openAdminModal(); }, 600);
     }
 
-    // C. Clique 5 vezes no selo EM do rodapé
     var emClicks = 0;
     var emResetTimer = null;
     document.addEventListener('click', function(e) {
@@ -392,17 +631,16 @@
     });
   }
 
-  // =========================================================================
-  // 5. INICIALIZAÇÃO
-  // =========================================================================
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      initLeadCapture();
-      initAdminTriggers();
-    });
-  } else {
+  function start() {
+    injectSimulator();
     initLeadCapture();
     initAdminTriggers();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
   }
 
 })();

@@ -1171,3 +1171,95 @@ div[class*="text-center"] > p {
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+
+/* ==========================================================================
+   REGRAS MESTRE CONSOLIDADAS: CENTRALIZAÇÃO ÁUREA & JUSTIFICAÇÃO DE TEXTOS
+   ========================================================================== */
+
+/* 1. CENTRALIZAÇÃO INCONDICIONAL DE TÍTULOS, SUBTÍTULOS E EYEBROWS */
+h1, h2, h3, h4, h5, h6,
+.eyebrow,
+.section-header,
+.section-header p,
+.section-header h2,
+.max-w-3xl.mx-auto.text-center,
+.max-w-3xl.mx-auto.text-center p,
+.max-w-3xl.mx-auto.text-center h2,
+#estrategia-agio .max-w-3xl,
+#estrategia-agio .max-w-3xl p,
+#estrategia-agio .max-w-3xl h2,
+#como-funciona .max-w-3xl,
+#como-funciona .max-w-3xl p,
+#como-funciona .max-w-3xl h2,
+#faq .max-w-3xl,
+#faq .max-w-3xl p,
+#faq .max-w-3xl h2,
+#renda-passiva .max-w-3xl,
+#renda-passiva .max-w-3xl p,
+#renda-passiva .max-w-3xl h2,
+#estrategia-agio .font-serif-display,
+#estrategia-agio p[class*="tracking-"],
+#estrategia-agio h3,
+#sim-badge-reduced,
+.btn,
+button,
+a.rounded-full {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* 2. REGRA 32: CORPO DE TODOS OS TEXTOS E ARTIGOS JUSTIFICADOS */
+p,
+li,
+blockquote,
+.card p,
+article p,
+#por-que-consorcio p,
+#depois-da-contemplacao p,
+#como-funciona p,
+#vantagens p,
+#sobre p,
+.justify-body p,
+[data-body] {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  hyphens: auto !important;
+  -webkit-hyphens: auto !important;
+  line-height: 1.7 !important;
+}
+
+/* 3. EXCEÇÕES DA JUSTIFICAÇÃO: CABEÇALHOS, EYEBROWS, SUBTÍTULOS E BOTÕES */
+.max-w-3xl.mx-auto p,
+.max-w-3xl.text-center p,
+div[class*="text-center"] > p,
+section > div > div:first-child p:first-child,
+p.tracking-\[0\.24em\],
+p.tracking-\[0\.22em\],
+p.tracking-\[0\.20em\],
+p.tracking-\[0\.18em\] {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* 4. NUMERAIS DOS CARDS (01, 02, 03, etc.) ALINHADOS À ESQUERDA */
+article p.tracking-\[0\.18em\],
+.card p.tracking-\[0\.18em\],
+#como-funciona article p:first-of-type {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  display: block !important;
+  width: auto !important;
+}
+
+/* 5. RODAPÉ INSTITUCIONAL */
+footer,
+footer div,
+footer p,
+footer a,
+footer span {
+  text-align: left !important;
+}
