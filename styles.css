@@ -1118,3 +1118,56 @@ header a[aria-label*="Erlane Mota"] span span:last-child {
     letter-spacing: 0.14em !important;
   }
 }
+
+
+/* ==========================================================================
+   CENTRALIZAÇÃO SUPREMA DE CABEÇALHOS DE SEÇÕES (PADRÃO OURO)
+   ========================================================================== */
+.max-w-3xl.mx-auto,
+.max-w-3xl.text-center,
+#estrategia-agio .max-w-3xl,
+#como-funciona .max-w-3xl,
+#faq .max-w-3xl,
+#renda-passiva .max-w-3xl {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+#estrategia-agio .max-w-3xl *,
+#como-funciona .max-w-3xl *,
+#faq .max-w-3xl *,
+#renda-passiva .max-w-3xl * {
+  text-align: center !important;
+}
+
+.max-w-3xl.mx-auto p,
+.max-w-3xl.text-center p,
+#estrategia-agio .max-w-3xl p,
+#como-funciona .max-w-3xl p,
+#faq .max-w-3xl p,
+#renda-passiva .max-w-3xl p,
+div[class*="text-center"] > p {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+
+/* Centralização nos cards de ciclo e estratégia */
+#estrategia-agio .font-serif-display,
+#estrategia-agio h3,
+#estrategia-agio p.tracking-\[0\.22em\],
+#estrategia-agio p[class*="tracking-"],
+#estrategia-agio div[class*="flex-wrap items-end"],
+#estrategia-agio div[class*="flex-col items-center"],
+#estrategia-agio .rounded-\[28px\] > div:first-child,
+#estrategia-agio .rounded-\[28px\] .p-7,
+#estrategia-agio .rounded-\[28px\] .p-7 > p,
+#estrategia-agio .rounded-\[28px\] .p-7 > h3 {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
