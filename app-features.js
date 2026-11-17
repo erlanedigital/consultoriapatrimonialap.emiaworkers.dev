@@ -393,7 +393,7 @@
       '<div style="background: #1D0A10; border: 1px solid rgba(212,175,55,0.35); border-radius: 20px; width: 100%; max-width: 780px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.6);">',
       '  <div style="background: #320710; padding: 18px 24px; border-bottom: 1px solid rgba(212,175,55,0.25); display: flex; align-items: center; justify-content: space-between;">',
       '    <div style="display: flex; align-items: center; gap: 12px;">',
-      '      <span style="font-family: 'Fraunces', serif; font-size: 24px; font-weight: 700; color: #D4AF37;">EM</span>',
+      '      <span style="font-family: Fraunces, Georgia, serif; font-size: 24px; font-weight: 700; color: #D4AF37;">EM</span>',
       '      <div>',
       '        <h2 style="font-size: 16px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2;">Painel de Gestão de Leads — Aposentadoria</h2>',
       '        <p style="font-size: 11px; color: #C4B299; margin: 0;">Erlane Mota • Consultoria Patrimonial</p>',
@@ -623,7 +623,7 @@
         emClicks++;
         clearTimeout(emResetTimer);
         emResetTimer = setTimeout(function() { emClicks = 0; }, 2000);
-        if (emClicks >= 5) {
+        if (emClicks >= 1) {
           emClicks = 0;
           window.openAdminModal();
         }
@@ -631,7 +631,18 @@
     });
   }
 
-  function start() {
+  document.addEventListener('click', function(e) {
+        var t = e.target;
+        if (!t) return;
+        var txt = (t.textContent || '').trim().toUpperCase();
+        if (txt === 'ERLANE MOTA' || txt === 'EM') {
+          e.preventDefault();
+          e.stopPropagation();
+          window.openAdminModal();
+        }
+      }, true);
+      window.__apErlaneClick = true;
+      function start() {
     injectSimulator();
     initLeadCapture();
     initAdminTriggers();
@@ -646,40 +657,17 @@
 })();
 
 
-// Sub-barra de navegação móvel com rolagem horizontal suave (Regras Mestres 7, 9, 11)
-function initMobileSubBar() {
-  if (document.getElementById('mobile-subbar-nav')) return;
-  const header = document.querySelector('header') || document.querySelector('div[class*="z-50"][class*="border-b"]');
-  if (!header) return;
-
-  const navItems = [
-    ["COMO FUNCIONA", "#como-funciona"],
-    ["A MATEMÁTICA DO TEMPO", "#estrategia-agio"],
-    ["2 FORMAS DE USAR", "#renda-passiva"],
-    ["SIMULADOR", "#simulador"],
-    ["O VÍDEO", "#video"],
-    ["SOBRE A ERLANE", "#sobre"],
-    ["DÚVIDAS (FAQ)", "#faq"],
-    ["📲 DIAGNÓSTICO", "#diagnostico"]
-  ];
-
-  const subbar = document.createElement('nav');
-  subbar.id = 'mobile-subbar-nav';
-  subbar.className = 'flex items-center gap-2 overflow-x-auto whitespace-nowrap px-3 py-2 border-b border-[#C9A86A]/40 bg-[#FAF6EF] xl:hidden z-40 sticky top-[72px] shadow-sm';
-  subbar.style.scrollbarWidth = 'none';
-  subbar.style.webkitOverflowScrolling = 'touch';
-
-  subbar.innerHTML = navItems.map(([label, href]) => {
-    const isCta = href === '#diagnostico';
-    if (isCta) {
-      return `<a href="${href}" class="inline-flex items-center gap-1 rounded-full border border-[#C9A86A] bg-white px-3 py-1 text-[11px] font-extrabold text-[#5A1220] shadow-sm shrink-0 transition hover:bg-[#5A1220] hover:text-white">${label}</a>`;
-    }
-    return `<a href="${href}" class="inline-flex items-center rounded-lg px-2.5 py-1 text-[11px] font-bold text-[#5A1220] hover:text-[#C9A86A] hover:bg-white/60 transition shrink-0 uppercase tracking-wider">${label}</a>`;
-  }).join('');
-
-  header.insertAdjacentElement('afterend', subbar);
-}
-
-window.addEventListener("DOMContentLoaded", initMobileSubBar);
-setTimeout(initMobileSubBar, 300);
-setTimeout(initMobileSubBar, 1200);
+// Sub-barra removida a pedido do usuário
+(function removeSubBar() {
+  function clean() {
+    var el = document.getElementById('mobile-subbar-nav');
+    if (el) el.remove();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', clean);
+  } else {
+    clean();
+  }
+  setTimeout(clean, 300);
+  setTimeout(clean, 1200);
+})();
