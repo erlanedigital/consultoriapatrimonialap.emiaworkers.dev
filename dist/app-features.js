@@ -177,24 +177,14 @@ try {
       '</div>'
     ].join('\n');
 
-    // Montagem no host específico
+    // Montagem estrita no host específico - ZERO RECRIAR AUTOMÁTICO FORA DO HOST
     var host = document.getElementById('simulador-host');
-    if (host && host.parentNode) {
-      host.parentNode.insertBefore(section, host);
-      host.remove();
-    } else {
-      var secTarget = document.getElementById('estrategia-agio');
-      if (secTarget) {
-        secTarget.appendChild(section);
-      } else {
-        var footer = document.querySelector('footer');
-        if (footer && footer.parentNode) {
-          footer.parentNode.insertBefore(section, footer);
-        } else {
-          document.body.appendChild(section);
-        }
-      }
+    if (!host || !host.parentNode) {
+      // Se o host não estiver presente, NUNCA joga no body ou footer
+      return;
     }
+    host.parentNode.insertBefore(section, host);
+    host.remove();
 
     updateSimulatorUI();
   }
