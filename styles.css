@@ -1497,3 +1497,22 @@ p, li, blockquote, article {
   margin-right: auto !important;
   display: block !important;
 }
+
+
+/* ==========================================================================
+   /* HERO H1 RESPONSIVO: POUCAS LINHAS */
+   ========================================================================== */
+h1.hero-h1 {
+  font-size: clamp(24px, 5.5vw, 68px) !important;
+  line-height: 1.14 !important;
+  text-wrap: balance !important;
+  letter-spacing: -0.01em !important;
+}
+
+@media (max-width: 640px) {
+  h1.hero-h1 {
+    font-size: 25px !important;
+    line-height: 1.16 !important;
+    max-width: 100% !important;
+  }
+}
