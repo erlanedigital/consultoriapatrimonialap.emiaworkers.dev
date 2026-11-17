@@ -1458,3 +1458,42 @@ ol.grid.md\:grid-cols-3 li p {
 #vantagens .grid.lg\:grid-cols-\[1fr_1\.1fr\] > div:first-child .flex-wrap {
   justify-content: center !important;
 }
+
+
+/* ==========================================================================
+   REGRAS ANTI-ÓRFÃS E FLUXO TIPOGRÁFICO ELEGANTE EM TODA A PÁGINA
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6,
+.font-serif-display,
+.eyebrow,
+.section-header h2 {
+  text-wrap: balance !important;
+}
+
+p, li, blockquote, article {
+  text-wrap: pretty !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+}
+
+/* ==========================================================================
+   SEÇÃO SOBRE A ERLANE: ALINHAMENTO À ESQUERDA & ESPAÇAMENTO NATURAL
+   ========================================================================== */
+#sobre div.text-left,
+#sobre div.text-left *,
+#sobre div.text-left p,
+#sobre div.text-left h2,
+#sobre .text-xs.font-bold {
+  text-align: left !important;
+  text-justify: auto !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  margin-left: 0 !important;
+}
+
+#sobre p.tracking-\[0\.24em\] {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  display: block !important;
+}
