@@ -1391,3 +1391,70 @@ footer a,
 footer span {
   text-align: left !important;
 }
+
+
+/* ==========================================================================
+   ALINHAMENTO DAS 3 COLUNAS DO CAMINHO NO TEMPO (À ESQUERDA DE CADA COLUNA)
+   ========================================================================== */
+ol.grid.md\:grid-cols-3,
+ol.grid.md\:grid-cols-3 li,
+ol.grid.md\:grid-cols-3 li *,
+ol.grid.md\:grid-cols-3 li p,
+ol.grid.md\:grid-cols-3 li h4 {
+  text-align: left !important;
+  text-justify: auto !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+ol.grid.md\:grid-cols-3 li h4 {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+ol.grid.md\:grid-cols-3 li p {
+  text-align: left !important;
+  text-justify: auto !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+/* ==========================================================================
+   BOTÃO "QUERO CONSTRUIR MINHA RENDA PASSIVA" ALINHADO À DIREITA
+   ========================================================================== */
+#renda-passiva a[href="#diagnostico"],
+#renda-passiva a[href="#diagnostico"].rounded-full {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+  align-self: flex-end !important;
+  display: inline-flex !important;
+}
+
+/* ==========================================================================
+   BLOCO "SEU PLANO, DO SEU JEITO": CENTRALIZADO E ALINHADO AOS CARDS
+   ========================================================================== */
+#vantagens .grid.lg\:grid-cols-\[1fr_1\.1fr\] {
+  align-items: center !important;
+}
+
+#vantagens .grid.lg\:grid-cols-\[1fr_1\.1fr\] > div:first-child {
+  align-self: center !important;
+  padding-top: 2rem !important;
+  text-align: center !important;
+}
+
+#vantagens .grid.lg\:grid-cols-\[1fr_1\.1fr\] > div:first-child p,
+#vantagens .grid.lg\:grid-cols-\[1fr_1\.1fr\] > div:first-child h2 {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#vantagens .grid.lg\:grid-cols-\[1fr_1\.1fr\] > div:first-child .flex-wrap {
+  justify-content: center !important;
+}

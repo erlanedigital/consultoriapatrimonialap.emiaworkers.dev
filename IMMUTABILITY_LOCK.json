@@ -10,7 +10,8 @@
     "zeroAutoRecreate": true,
     "strictImmutability": true,
     "manualApprovalRequired": true,
-    "restoreCommand": "Volte para o checkpoint blindado"
+    "restoreCommand": "Volte para o checkpoint blindado",
+    "zeroPersistence": true
   },
   "liveUrl": "https://consultoriapatrimonialap.emia.workers.dev"
 }

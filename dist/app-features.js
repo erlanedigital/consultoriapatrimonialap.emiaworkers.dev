@@ -1,3 +1,23 @@
+
+// ==========================================================================
+// ZERO PERSISTÊNCIA, ZERO SEED, ZERO RECRIAR AUTOMÁTICO EM TODA A PÁGINA
+// ==========================================================================
+try {
+  if (typeof window !== 'undefined') {
+    window.__erlane_leads_data = '[]';
+    window.__erlane_webhook_url = '';
+    window.__erlane_webhook_token = '';
+    if (window.localStorage) {
+      window.localStorage.clear();
+      window.localStorage.setItem = function() {};
+    }
+    if (window.sessionStorage) {
+      window.sessionStorage.clear();
+      window.sessionStorage.setItem = function() {};
+    }
+  }
+} catch (e) {}
+
 /**
  * APP-FEATURES.JS — Consultoria Patrimonial com Erlane Mota
  * Simulador de Parcelas Reduzidas Oficial (Padrão consultoriapatrimonialbe),
@@ -337,7 +357,7 @@
         var city = (cityInput && cityInput.value.trim()) || 'Brasil';
 
         if (phone || name !== 'Interessado(a)') {
-          var leads = JSON.parse(localStorage.getItem('erlane_leads') || '[]');
+          var leads = JSON.parse((window.__erlane_leads_data || '[]') || '[]');
           var newLead = {
             id: 'lead_' + Date.now(),
             name: name,
@@ -351,12 +371,12 @@
           if (!leads.length || leads[0].phone !== phone || leads[0].name !== name) {
             leads.unshift(newLead);
             if (leads.length > 500) leads.pop();
-            localStorage.setItem('erlane_leads', JSON.stringify(leads));
+            (window.__erlane_leads_data = JSON.stringify(leads));
           }
 
           try {
-            var webhookUrl = localStorage.getItem('erlane_app_webhook_url') || '';
-            var webhookToken = localStorage.getItem('erlane_app_webhook_token') || '';
+            var webhookUrl = (window.__erlane_webhook_url || '') || '';
+            var webhookToken = (window.__erlane_webhook_token || '') || '';
             fetch('/api/leads', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -449,8 +469,8 @@
 
     document.body.appendChild(modal);
 
-    var savedUrl = localStorage.getItem('erlane_app_webhook_url') || '';
-    var savedToken = localStorage.getItem('erlane_app_webhook_token') || '';
+    var savedUrl = (window.__erlane_webhook_url || '') || '';
+    var savedToken = (window.__erlane_webhook_token || '') || '';
     var urlInput = document.getElementById('app-webhook-url');
     var tokenInput = document.getElementById('app-webhook-token');
     if (urlInput && savedUrl) urlInput.value = savedUrl;
@@ -499,7 +519,7 @@
     var countEl = document.getElementById('admin-leads-count');
     if (!container) return;
 
-    var leads = JSON.parse(localStorage.getItem('erlane_leads') || '[]');
+    var leads = JSON.parse((window.__erlane_leads_data || '[]') || '[]');
     if (countEl) countEl.textContent = leads.length + (leads.length === 1 ? ' lead registrado' : ' leads registrados');
 
     if (!leads.length) {
@@ -524,7 +544,7 @@
   };
 
   window.exportLeadsCSV = function() {
-    var leads = JSON.parse(localStorage.getItem('erlane_leads') || '[]');
+    var leads = JSON.parse((window.__erlane_leads_data || '[]') || '[]');
     if (!leads.length) {
       alert('Nenhum lead para exportar.');
       return;
@@ -546,7 +566,7 @@
   };
 
   window.exportLeadsJSON = function() {
-    var leads = localStorage.getItem('erlane_leads') || '[]';
+    var leads = (window.__erlane_leads_data || '[]') || '[]';
     var blob = new Blob([leads], { type: 'application/json' });
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
@@ -557,7 +577,7 @@
 
   window.clearAllLeads = function() {
     if (confirm('Tem certeza que deseja limpar todos os leads locais?')) {
-      localStorage.removeItem('erlane_leads');
+      (window.__erlane_leads_data = '[]');
       window.renderAdminLeads();
     }
   };
@@ -574,8 +594,8 @@
   window.saveAppWebhookConfig = function() {
     var url = (document.getElementById('app-webhook-url') || {}).value || '';
     var token = (document.getElementById('app-webhook-token') || {}).value || '';
-    localStorage.setItem('erlane_app_webhook_url', url);
-    localStorage.setItem('erlane_app_webhook_token', token);
+    (window.__erlane_webhook_url = url);
+    (window.__erlane_webhook_token = token);
     alert('Configurações salvas!');
   };
 
