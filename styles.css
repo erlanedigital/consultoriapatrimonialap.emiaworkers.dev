@@ -2215,3 +2215,28 @@ p.ciclo-fluxo-resumo {
   margin-top: 1.75rem !important;
   padding: 0.625rem 1.25rem !important;
 }
+
+/* ==========================================================================
+   SUBTÍTULO A ESTRATÉGIA DO ÁGIO: EXATAMENTE 2 LINHAS NO DESKTOP / TABLET
+   ========================================================================== */
+#estrategia-agio .max-w-4xl,
+#estrategia-agio div.max-w-4xl {
+  max-width: 68rem !important; /* ~1088px */
+}
+
+#estrategia-agio .max-w-4xl > p:last-child,
+#estrategia-agio p.max-w-3xl,
+#estrategia-agio p.max-w-5xl {
+  max-width: 100% !important;
+  font-size: clamp(1rem, 1.3vw, 1.25rem) !important;
+  line-height: 1.6 !important;
+}
+
+@media (min-width: 640px) {
+  #estrategia-agio .max-w-4xl > p:last-child span,
+  #estrategia-agio p.max-w-3xl span,
+  #estrategia-agio p.max-w-5xl span {
+    white-space: nowrap !important;
+    display: block !important;
+  }
+}
