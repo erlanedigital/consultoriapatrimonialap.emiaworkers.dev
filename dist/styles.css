@@ -1980,3 +1980,58 @@ div:has(> p:first-child[class*="tracking-[0.18em]"]:first-child) {
   margin: 1.75rem auto 0 auto !important;
   display: inline-flex !important;
 }
+
+
+/* ==========================================================================
+   CARD MONOGRAMA 'EM' (SOBRE A ERLANE): ALINHAMENTO À ESQUERDA & SEM HIFENIZAÇÃO
+   ========================================================================== */
+#sobre div.bg-\[\#3D0C16\],
+#sobre div.rounded-\[28px\].bg-\[\#3D0C16\],
+#sobre div.bg-\[\#3D0C16\] * {
+  text-align: left !important;
+  text-justify: auto !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+}
+
+#sobre div.bg-\[\#3D0C16\] span,
+#sobre div.bg-\[\#3D0C16\] p,
+#sobre div.bg-\[\#3D0C16\] div {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+#sobre div.bg-\[\#3D0C16\] span.font-serif-display {
+  font-size: 72px !important;
+  color: #C9A86A !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+#sobre div.bg-\[\#3D0C16\] p.font-serif-display {
+  font-size: 1.875rem !important; /* 30px */
+  line-height: 1.25 !important;
+  color: #ffffff !important;
+  margin-top: 1.5rem !important;
+}
+
+#sobre div.bg-\[\#3D0C16\] p.text-white\/75 {
+  font-size: 1rem !important; /* 16px */
+  line-height: 1.65 !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  margin-top: 1rem !important;
+}
+
+#sobre div.bg-\[\#3D0C16\] div.border-t {
+  border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+  padding-top: 1.25rem !important;
+  margin-top: 2rem !important;
+  color: #C9A86A !important;
+  font-weight: 700 !important;
+  font-size: 0.875rem !important;
+}
