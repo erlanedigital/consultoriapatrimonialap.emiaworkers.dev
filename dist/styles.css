@@ -2053,3 +2053,54 @@ div.max-w-4xl.text-center > p:first-child {
   display: block !important;
   width: 100% !important;
 }
+
+
+/* ==========================================================================
+   LINHA DO TEMPO: ÍCONES PERFEITOS, LINHA CONECTORA E ESPAÇAMENTO HARMONIOSO
+   ========================================================================== */
+#renda-passiva ol.grid {
+  margin-top: 3.5rem !important;
+}
+
+#renda-passiva ol.grid li {
+  text-align: left !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  word-break: normal !important;
+}
+
+#renda-passiva ol.grid li p,
+#renda-passiva ol.grid li h4 {
+  text-align: left !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  word-break: normal !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* ==========================================================================
+   LINHA DO TEMPO (#renda-passiva): ÍCONES, LINHA CONECTORA E ESPAÇAMENTO
+   ========================================================================== */
+#renda-passiva ol.grid,
+ol.grid {
+  margin-top: 3.5rem !important;
+}
+
+#renda-passiva ol.grid li,
+#renda-passiva ol.grid li * {
+  text-align: left !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  word-break: normal !important;
+}
+
+#renda-passiva ol.grid li p,
+#renda-passiva ol.grid li h4 {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  word-break: normal !important;
+}
