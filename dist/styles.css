@@ -2122,3 +2122,26 @@ ol.grid {
     line-height: 1.625rem !important;
   }
 }
+
+/* ==========================================================================
+   SEM PALAVRAS ÓRFÃS: LINHA ÚNICA NO DESKTOP E BALANCEAMENTO PERFEITO
+   ========================================================================== */
+.agio-reiniciar-ciclo,
+#estrategia-agio .agio-reiniciar-ciclo,
+#estrategia-agio p.agio-reiniciar-ciclo {
+  max-width: 100% !important;
+  width: 100% !important;
+  text-align: center !important;
+  text-wrap: balance !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
+}
+
+@media (min-width: 860px) {
+  .agio-reiniciar-ciclo,
+  #estrategia-agio .agio-reiniciar-ciclo,
+  #estrategia-agio p.agio-reiniciar-ciclo {
+    white-space: nowrap !important;
+  }
+}
