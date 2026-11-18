@@ -2104,3 +2104,21 @@ ol.grid {
   -webkit-hyphens: none !important;
   word-break: normal !important;
 }
+
+/* ==========================================================================
+   PADRONIZAÇÃO DO TAMANHO DAS FONTES NO CORPO DO TEXTO (#renda-passiva)
+   ========================================================================== */
+#renda-passiva .max-w-3xl p:not([class*="tracking-"]),
+#renda-passiva .max-w-3xl p {
+  font-size: 1.125rem !important; /* 18px */
+  line-height: 1.75rem !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+@media (max-width: 640px) {
+  #renda-passiva .max-w-3xl p:not([class*="tracking-"]),
+  #renda-passiva .max-w-3xl p {
+    font-size: 1rem !important; /* 16px */
+    line-height: 1.625rem !important;
+  }
+}
