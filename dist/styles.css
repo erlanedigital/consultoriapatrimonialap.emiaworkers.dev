@@ -2255,3 +2255,34 @@ p.ciclo-fluxo-resumo {
     align-self: center !important;
   }
 }
+
+/* ==========================================================================
+   LEGENDA DO VÍDEO (#video): LINHA ÚNICA E SUAVEMENTE MAIOR
+   ========================================================================== */
+#video p.video-legenda,
+.video-legenda {
+  font-size: 1.125rem !important; /* 18px (suavemente maior que os 14px anteriores) */
+  line-height: 1.6 !important;
+  color: #5A4844 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
+}
+
+@media (min-width: 720px) {
+  #video p.video-legenda,
+  .video-legenda {
+    white-space: nowrap !important;
+  }
+}
+
+@media (max-width: 719px) {
+  #video p.video-legenda,
+  .video-legenda {
+    font-size: 1rem !important;
+    text-wrap: balance !important;
+  }
+}
