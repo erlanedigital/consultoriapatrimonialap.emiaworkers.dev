@@ -1619,3 +1619,246 @@ p[class*="tracking-[0.2"],
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+
+/* ==========================================================================
+   RESTAURAÇÃO EXATA DO CARD 'SEU PLANO EM FOCO' (COMO ESTAVA ANTES)
+   ========================================================================== */
+#topo .rounded-\[28px\],
+div.rounded-\[28px\].bg-\[\#5A1220\],
+#topo div[class*="rounded-\[28px\]"] {
+  text-align: left !important;
+}
+
+#topo .rounded-\[28px\] *,
+div.rounded-\[28px\].bg-\[\#5A1220\] * {
+  text-align: left !important;
+}
+
+#topo .rounded-\[28px\] .flex.items-center.justify-between,
+div.rounded-\[28px\].bg-\[\#5A1220\] .flex.items-center.justify-between {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+#topo .rounded-\[28px\] p.tracking-\[0\.28em\],
+div.rounded-\[28px\].bg-\[\#5A1220\] p.tracking-\[0\.28em\] {
+  text-align: left !important;
+  display: inline-block !important;
+  margin: 0 !important;
+  font-size: 0.75rem !important; /* text-xs */
+  font-weight: 900 !important;
+  letter-spacing: 0.28em !important;
+  color: #C9A86A !important;
+  width: auto !important;
+}
+
+#topo .rounded-\[28px\] h2.font-serif-display,
+div.rounded-\[28px\].bg-\[\#5A1220\] h2.font-serif-display {
+  font-size: 1.875rem !important; /* text-3xl = 30px */
+  line-height: 1.25 !important;
+  font-weight: 700 !important;
+  text-align: left !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  color: #ffffff !important;
+  text-wrap: initial !important;
+}
+
+@media (min-width: 640px) {
+  #topo .rounded-\[28px\] h2.font-serif-display,
+  div.rounded-\[28px\].bg-\[\#5A1220\] h2.font-serif-display {
+    font-size: 2.25rem !important; /* text-4xl = 36px */
+    line-height: 1.2 !important;
+  }
+}
+
+#topo .rounded-\[28px\] div.space-y-6 > div,
+div.rounded-\[28px\].bg-\[\#5A1220\] div.space-y-6 > div {
+  text-align: left !important;
+  display: flex !important;
+}
+
+#topo .rounded-\[28px\] div.space-y-6 p,
+div.rounded-\[28px\].bg-\[\#5A1220\] div.space-y-6 p {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* ==========================================================================
+   SIMULADOR H2: RIGOROSAMENTE EM 2 LINHAS
+   ========================================================================== */
+.sim-h2-title {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 960px !important;
+}
+
+.sim-h2-title .sim-line-1,
+.sim-h2-title .sim-line-2 {
+  display: block !important;
+  text-align: center !important;
+  line-height: 1.15 !important;
+}
+
+.sim-h2-title .sim-line-1 {
+  font-size: clamp(16px, 4.2vw, 42px) !important;
+}
+
+.sim-h2-title .sim-line-2 {
+  font-size: clamp(17px, 4.4vw, 42px) !important;
+}
+
+@media (min-width: 640px) {
+  .sim-h2-title .sim-line-1,
+  .sim-h2-title .sim-line-2 {
+    white-space: nowrap !important;
+    font-size: clamp(24px, 3.8vw, 44px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .sim-h2-title .sim-line-1 {
+    font-size: clamp(15px, 4.2vw, 18px) !important;
+    white-space: nowrap !important;
+  }
+  .sim-h2-title .sim-line-2 {
+    font-size: clamp(16px, 4.5vw, 20px) !important;
+    white-space: nowrap !important;
+  }
+}
+
+
+/* ==========================================================================
+   RESTAURAÇÃO EXATA DO CARD 'SEU PLANO EM FOCO' (COMO ESTAVA ANTES)
+   ========================================================================== */
+#topo .rounded-\[28px\],
+div.rounded-\[28px\].bg-\[\#5A1220\],
+#topo div[class*="rounded-\[28px\]"] {
+  text-align: left !important;
+}
+
+#topo .rounded-\[28px\] *,
+div.rounded-\[28px\].bg-\[\#5A1220\] * {
+  text-align: left !important;
+}
+
+#topo .rounded-\[28px\] .flex.items-center.justify-between,
+div.rounded-\[28px\].bg-\[\#5A1220\] .flex.items-center.justify-between {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+#topo .rounded-\[28px\] p.tracking-\[0\.28em\],
+div.rounded-\[28px\].bg-\[\#5A1220\] p.tracking-\[0\.28em\] {
+  text-align: left !important;
+  display: inline-block !important;
+  margin: 0 !important;
+  font-size: 0.75rem !important; /* text-xs */
+  font-weight: 900 !important;
+  letter-spacing: 0.28em !important;
+  color: #C9A86A !important;
+  width: auto !important;
+}
+
+#topo .rounded-\[28px\] h2.font-serif-display,
+div.rounded-\[28px\].bg-\[\#5A1220\] h2.font-serif-display {
+  font-size: 1.875rem !important; /* text-3xl = 30px */
+  line-height: 1.25 !important;
+  font-weight: 700 !important;
+  text-align: left !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  color: #ffffff !important;
+  text-wrap: initial !important;
+}
+
+@media (min-width: 640px) {
+  #topo .rounded-\[28px\] h2.font-serif-display,
+  div.rounded-\[28px\].bg-\[\#5A1220\] h2.font-serif-display {
+    font-size: 2.25rem !important; /* text-4xl = 36px */
+    line-height: 1.2 !important;
+  }
+}
+
+#topo .rounded-\[28px\] div.space-y-6 > div,
+div.rounded-\[28px\].bg-\[\#5A1220\] div.space-y-6 > div {
+  text-align: left !important;
+  display: flex !important;
+}
+
+#topo .rounded-\[28px\] div.space-y-6 p,
+div.rounded-\[28px\].bg-\[\#5A1220\] div.space-y-6 p {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* ==========================================================================
+   SIMULADOR H2: RIGOROSAMENTE EM 2 LINHAS
+   ========================================================================== */
+.sim-h2-title {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 960px !important;
+}
+
+.sim-h2-title .sim-line-1,
+.sim-h2-title .sim-line-2 {
+  display: block !important;
+  text-align: center !important;
+  line-height: 1.15 !important;
+}
+
+.sim-h2-title .sim-line-1 {
+  font-size: clamp(16px, 4.2vw, 42px) !important;
+}
+
+.sim-h2-title .sim-line-2 {
+  font-size: clamp(17px, 4.4vw, 42px) !important;
+}
+
+@media (min-width: 640px) {
+  .sim-h2-title .sim-line-1,
+  .sim-h2-title .sim-line-2 {
+    white-space: nowrap !important;
+    font-size: clamp(24px, 3.8vw, 44px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .sim-h2-title .sim-line-1 {
+    font-size: clamp(15px, 4.2vw, 18px) !important;
+    white-space: nowrap !important;
+  }
+  .sim-h2-title .sim-line-2 {
+    font-size: clamp(16px, 4.5vw, 20px) !important;
+    white-space: nowrap !important;
+  }
+}
+
+
+/* ==========================================================================
+   CENTRALIZAÇÃO ABSOLUTA DA BARRA DE ATENDIMENTO
+   ========================================================================== */
+p.text-white\/65,
+.text-white\/65 {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
+  width: 100% !important;
+}

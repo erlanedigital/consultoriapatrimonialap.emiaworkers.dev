@@ -210,7 +210,8 @@ try {
       '      <span>⏳</span> SIMULADOR DE APOSENTADORIA & RENDA PASSIVA',
       '    </span>',
       '    <h2 style="font-family: Fraunces, Georgia, serif; font-size: clamp(28px, 4.5vw, 48px); font-weight: 700; color: #3D0C16; margin: 18px 0 12px 0; line-height: 1.15;">',
-      '      Planeje sua aposentadoria com patrimônio próprio, sem depender só do INSS',
+          '      <span class="sim-line-1" style="display: block;">Planeje sua aposentadoria com patrimônio próprio,</span>',
+    '      <span class="sim-line-2" style="display: block;">sem depender só do INSS</span>',
       '    </h2>',
       '    <p style="font-size: clamp(16px, 2vw, 19px); line-height: 1.6; color: #6E5B57; margin: 0 auto; max-width: 720px;">',
       '      Descubra com quantos anos você encerra o seu consórcio, qual a parcela reduzida até a contemplação e quanto você receberá de renda passiva mensal.',
@@ -238,7 +239,7 @@ try {
       '            <span id="sim-credit-text" style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 700; color: #5A1220;">R$ 300.000</span>',
       '          </div>',
       '          <div class="sim-credit-btns-row" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 12px;">',
-      '            <button type="button" onclick="window.setSimCredit(150000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s;">150 mil</button>',
+      '            <button type="button" onclick="window.setSimCredit(100000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s;">100 mil</button>',
       '            <button type="button" onclick="window.setSimCredit(300000)" class="sim-c-btn active" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid #5A1220; background: #5A1220; color: #F3E7C4; cursor: pointer; transition: all 0.2s;">300 mil</button>',
       '            <button type="button" onclick="window.setSimCredit(500000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s;">500 mil</button>',
       '            <button type="button" onclick="window.setSimCredit(800000)" class="sim-c-btn" style="padding: 10px 4px; border-radius: 12px; font-size: 12px; font-weight: 800; border: 1.5px solid rgba(201,168,106,0.4); background: #FAF6EF; color: #5A1220; cursor: pointer; transition: all 0.2s;">800 mil</button>',
@@ -297,13 +298,24 @@ try {
       '            <div id="sim-foreign-title" style="font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.7); margin-bottom: 2px;">Equivalente no exterior em Euro:</div>',
       '            <div id="sim-foreign-val" style="font-size: 20px; font-weight: 800; color: #E3CA8A;">€ 162,76 /mês</div>',
       '          </div>',
-      '          <!-- Renda Passiva Vitalícia Estimada -->',
+      '          <!-- Renda Passiva Estimada: Aluguel & Renda Fixa -->',
       '          <div style="border-top: 1px solid rgba(201,168,106,0.3); padding-top: 16px; margin-bottom: 16px;">',
-      '            <div style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #E3CA8A; margin-bottom: 4px;">🏠 RENDA PASSIVA ESTIMADA DE ALUGUEL:</div>',
-      '            <div id="sim-rent-val" style="font-family: Fraunces, Georgia, serif; font-size: 26px; font-weight: 700; color: #75E09B; line-height: 1.2;">',
-      '              + R$ 1.650,00 <span style="font-size: 13px; font-weight: normal; color: rgba(255,255,255,0.85);">/mês vitalício</span>',
+      '            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">',
+      '              <div style="background: rgba(255,255,255,0.06); padding: 12px; border-radius: 14px; border: 1px solid rgba(201,168,106,0.25); text-align: left;">',
+      '                <div style="font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #E3CA8A; margin-bottom: 3px;">🏠 ALUGUEL ESTIMADO:</div>',
+      '                <div id="sim-rent-val" style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 700; color: #75E09B; line-height: 1.2;">',
+      '                  + R$ 1.650,00 <span style="font-size: 11px; font-weight: normal; color: rgba(255,255,255,0.85);">/mês</span>',
+      '                </div>',
+      '                <div style="font-size: 10px; color: rgba(255,255,255,0.7); margin-top: 3px;">~0,55%/mês s/ imóvel quitado</div>',
+      '              </div>',
+      '              <div style="background: rgba(255,255,255,0.06); padding: 12px; border-radius: 14px; border: 1px solid rgba(201,168,106,0.25); text-align: left;">',
+      '                <div style="font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #E3CA8A; margin-bottom: 3px;">📈 RENDA FIXA (CDI):</div>',
+      '                <div id="sim-fixa-val" style="font-family: Fraunces, Georgia, serif; font-size: 18px; font-weight: 700; color: #E3CA8A; line-height: 1.2;">',
+      '                  + R$ 2.400,00 <span style="font-size: 11px; font-weight: normal; color: rgba(255,255,255,0.85);">/mês</span>',
+      '                </div>',
+      '                <div style="font-size: 10px; color: rgba(255,255,255,0.7); margin-top: 3px;">~0,80%/mês aplicado (100% CDI)</div>',
+      '              </div>',
       '            </div>',
-      '            <div style="font-size: 11px; color: rgba(255,255,255,0.75); margin-top: 4px;">Estimativa de aluguel mensal sobre o imóvel quitado (~0,55%/mês).</div>',
       '          </div>',
       '        </div>',
       '        <!-- Botão WhatsApp -->',
@@ -447,10 +459,17 @@ try {
     }
 
     // 9. Renda Passiva Estimada de Aluguel (~0,55%/mês)
-    var rendaEstimada = state.credit * 0.0055;
+    var rendaEstimadaAluguel = state.credit * 0.0055;
     var rentEl = document.getElementById('sim-rent-val');
     if (rentEl) {
-      rentEl.innerHTML = '+ R$ ' + rendaEstimada.toFixed(2).replace('.', ',') + ' <span style="font-size: 13px; font-weight: normal; color: rgba(255,255,255,0.85);">/mês vitalício</span>';
+      rentEl.innerHTML = '+ R$ ' + rendaEstimadaAluguel.toFixed(2).replace('.', ',') + ' <span style="font-size: 11px; font-weight: normal; color: rgba(255,255,255,0.85);">/mês</span>';
+    }
+
+    // 9.1 Renda Estimada na Renda Fixa (~0,80%/mês a 100% CDI)
+    var rendaEstimadaFixa = state.credit * 0.0080;
+    var fixaEl = document.getElementById('sim-fixa-val');
+    if (fixaEl) {
+      fixaEl.innerHTML = '+ R$ ' + rendaEstimadaFixa.toFixed(2).replace('.', ',') + ' <span style="font-size: 11px; font-weight: normal; color: rgba(255,255,255,0.85);">/mês</span>';
     }
 
     // 10. Link do WhatsApp
@@ -462,7 +481,8 @@ try {
                 '• Patrimônio Desejado: R$ ' + state.credit.toLocaleString('pt-BR') + '\n' +
                 '• Prazo: ' + state.months + ' meses (~' + anosPrazo + ' anos)\n' +
                 '• Parcela Reduzida: R$ ' + calc.reducedTotal.toFixed(2).replace('.', ',') + '/mês (' + curr.symbol + ' ' + fStr + ')\n' +
-                '• Renda Passiva Estimada: R$ ' + rendaEstimada.toFixed(2).replace('.', ',') + '/mês\n\n' +
+                '• Renda Estimada (Aluguel): R$ ' + rendaEstimadaAluguel.toFixed(2).replace('.', ',') + '/mês\n' +
+                '• Renda Estimada (Renda Fixa): R$ ' + rendaEstimadaFixa.toFixed(2).replace('.', ',') + '/mês\n\n' +
                 'Como posso iniciar meu planejamento?';
       waBtn.href = 'https://wa.me/5538997373140?text=' + encodeURIComponent(msg);
     }
