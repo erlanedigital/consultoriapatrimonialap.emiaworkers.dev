@@ -2240,3 +2240,18 @@ p.ciclo-fluxo-resumo {
     display: block !important;
   }
 }
+
+/* ==========================================================================
+   ALINHAMENTO VERTICAL CENTRALIZADO (#para-quem)
+   ========================================================================== */
+#para-quem .max-w-4xl,
+#para-quem div.max-w-4xl {
+  margin-bottom: 0 !important;
+}
+
+@media (min-width: 1024px) {
+  #para-quem .para-quem-cards {
+    margin-top: -2rem !important; /* sobe o bloco de cards para alinhar ao centro */
+    align-self: center !important;
+  }
+}
