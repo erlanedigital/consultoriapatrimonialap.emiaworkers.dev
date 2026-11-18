@@ -2187,3 +2187,12 @@ p.ciclo-fluxo-resumo {
   margin-right: 0 !important;
   margin-left: auto !important;
 }
+
+/* ==========================================================================
+   SUBTÍTULO A ESTRATÉGIA DO ÁGIO: 2 LINHAS PERFEITAS SEM PALAVRAS ÓRFÃS
+   ========================================================================== */
+#estrategia-agio .max-w-4xl > p:last-child,
+#estrategia-agio p.max-w-3xl {
+  max-width: 58rem !important;
+  text-wrap: balance !important;
+}
