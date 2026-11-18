@@ -1862,3 +1862,70 @@ p.text-white\/65,
   display: block !important;
   width: 100% !important;
 }
+
+
+/* ==========================================================================
+   OCULTAÇÃO DEFINITIVA DE ELEMENTOS RETIRADOS PELO CLIENTE
+   ========================================================================== */
+/* Oculta qualquer resquício de prévia de mensagem se ainda renderizado */
+div:has(> p:first-child[class*="tracking-[0.18em]"]:first-child) {
+  display: none !important;
+}
+
+/* Garante H2 do Simulador em exatamente 2 linhas em qualquer dispositivo */
+.sim-h2-title {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.sim-h2-title .sim-line-1,
+.sim-h2-title .sim-line-2 {
+  display: block !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 480px) {
+  .sim-h2-title .sim-line-1 {
+    font-size: clamp(14px, 3.9vw, 17px) !important;
+    white-space: nowrap !important;
+    letter-spacing: -0.01em !important;
+  }
+  .sim-h2-title .sim-line-2 {
+    font-size: clamp(15px, 4.4vw, 19px) !important;
+    white-space: nowrap !important;
+    letter-spacing: -0.01em !important;
+  }
+}
+
+
+/* ==========================================================================
+   SOBRE A ERLANE: TIPOGRAFIA REDUZIDA, HARMONIOSA E REFINADA
+   ========================================================================== */
+#sobre h2.font-serif-display {
+  font-size: clamp(28px, 4.2vw, 48px) !important;
+  line-height: 1.15 !important;
+  text-align: center !important;
+}
+
+#sobre p {
+  font-size: clamp(15px, 1.8vw, 18px) !important;
+  line-height: 1.7 !important;
+  max-width: 680px !important;
+  text-align: center !important;
+}
+
+/* ==========================================================================
+   RESPOSTAS DO FAQ ALINHADAS RIGOROSAMENTE À ESQUERDA
+   ========================================================================== */
+#faq p,
+#faq button,
+#faq .divide-y p,
+#faq [aria-expanded] + p,
+#faq p.leading-relaxed {
+  text-align: left !important;
+  text-justify: auto !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
