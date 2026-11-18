@@ -2035,3 +2035,21 @@ div:has(> p:first-child[class*="tracking-[0.18em]"]:first-child) {
   font-weight: 700 !important;
   font-size: 0.875rem !important;
 }
+
+
+/* ==========================================================================
+   CENTRALIZAÇÃO ABSOLUTA DE 'COMO FUNCIONA' E TODOS OS EYEBROWS
+   ========================================================================== */
+#como-funciona .max-w-4xl p:first-child,
+#como-funciona p.tracking-\[0\.24em\],
+#como-funciona p[class*="tracking-"],
+#como-funciona .eyebrow,
+section#como-funciona p.tracking-\[0\.24em\],
+section#como-funciona div:first-child p:first-child,
+div.max-w-4xl.text-center > p:first-child {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block !important;
+  width: 100% !important;
+}
