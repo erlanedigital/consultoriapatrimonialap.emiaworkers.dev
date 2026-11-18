@@ -2196,3 +2196,22 @@ p.ciclo-fluxo-resumo {
   max-width: 58rem !important;
   text-wrap: balance !important;
 }
+
+/* ==========================================================================
+   RESPIRO E HARMONIA ENTRE LINHAS: O CICLO, PASSO A PASSO
+   ========================================================================== */
+#estrategia-agio .rounded-\[28px\] .font-serif-display,
+#estrategia-agio .rounded-\[28px\] h3 {
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.75rem !important;
+  line-height: 1.22 !important;
+}
+
+#estrategia-agio .rounded-\[28px\] p[class*="tracking-"] {
+  margin-bottom: 0.75rem !important;
+}
+
+#estrategia-agio .rounded-\[28px\] span.rounded-full.bg-\[\#5A1220\] {
+  margin-top: 1.75rem !important;
+  padding: 0.625rem 1.25rem !important;
+}
