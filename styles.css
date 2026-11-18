@@ -2145,3 +2145,17 @@ ol.grid {
     white-space: nowrap !important;
   }
 }
+
+/* ==========================================================================
+   CENTRALIZAÇÃO ABSOLUTA DO FLUXO DO CICLO (Contempla -> vende -> ...)
+   ========================================================================== */
+.ciclo-fluxo-resumo,
+#estrategia-agio .ciclo-fluxo-resumo,
+#estrategia-agio p.ciclo-fluxo-resumo,
+p.ciclo-fluxo-resumo {
+  text-align: center !important;
+  display: block !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
