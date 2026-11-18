@@ -2286,3 +2286,16 @@ p.ciclo-fluxo-resumo {
     text-wrap: balance !important;
   }
 }
+
+/* ==========================================================================
+   SUB-BARRA HORIZONTAL MOBILE (SEM MENU HAMBÚRGUER)
+   ========================================================================== */
+header nav[aria-label="Navegação rápida"] {
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+}
+
+header nav[aria-label="Navegação rápida"]::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Opera */
+}
