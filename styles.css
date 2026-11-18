@@ -1929,3 +1929,54 @@ div:has(> p:first-child[class*="tracking-[0.18em]"]:first-child) {
   margin-left: 0 !important;
   margin-right: auto !important;
 }
+
+
+/* ==========================================================================
+   SOBRE A ERLANE: TEXTO PERFEITO, ALINHADO À ESQUERDA, ZERO HIFENIZAÇÃO
+   ========================================================================== */
+#sobre,
+#sobre * {
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+}
+
+#sobre p,
+#sobre p[class*="leading-relaxed"],
+#sobre div p {
+  text-align: left !important;
+  text-justify: auto !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  word-break: normal !important;
+  text-wrap: pretty !important;
+  font-family: 'Manrope', 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  font-size: clamp(15px, 1.9vw, 18px) !important;
+  line-height: 1.75 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 680px !important;
+  display: block !important;
+}
+
+#sobre h2,
+#sobre h2.font-serif-display {
+  text-align: center !important;
+  font-size: clamp(28px, 4.2vw, 48px) !important;
+  line-height: 1.15 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#sobre .eyebrow,
+#sobre p[class*="tracking-"] {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#sobre a[href="#diagnostico"] {
+  margin: 1.75rem auto 0 auto !important;
+  display: inline-flex !important;
+}
