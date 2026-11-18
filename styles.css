@@ -2159,3 +2159,31 @@ p.ciclo-fluxo-resumo {
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+/* ==========================================================================
+   CARDS DE ETAPAS (#estrategia-agio): ÍCONES NAS EXTREMIDADES (ESQUERDA E DIREITA)
+   ========================================================================== */
+#estrategia-agio .etapa-card-header,
+.etapa-card-header {
+  display: flex !important;
+  width: 100% !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+#estrategia-agio .etapa-card-header > span:first-child,
+.etapa-card-header > span:first-child {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+#estrategia-agio .etapa-card-header > span:last-child,
+.etapa-card-header > span:last-child {
+  margin-right: 0 !important;
+  margin-left: auto !important;
+}
+
+#estrategia-agio .etapa-card-header .font-serif-display {
+  margin-right: 0 !important;
+  margin-left: auto !important;
+}
