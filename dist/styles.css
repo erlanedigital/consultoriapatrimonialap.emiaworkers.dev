@@ -1478,24 +1478,7 @@ p, li, blockquote, article {
 /* ==========================================================================
    SEÇÃO SOBRE A ERLANE: ALINHAMENTO À ESQUERDA & ESPAÇAMENTO NATURAL
    ========================================================================== */
-#sobre div.text-left,
-#sobre div.text-left *,
-#sobre div.text-left p,
-#sobre div.text-left h2,
-#sobre .text-xs.font-bold {
-  text-align: left !important;
-  text-justify: auto !important;
-  hyphens: none !important;
-  -webkit-hyphens: none !important;
-  margin-left: 0 !important;
-}
 
-#sobre p.tracking-\[0\.24em\] {
-  text-align: left !important;
-  margin-left: 0 !important;
-  margin-right: auto !important;
-  display: block !important;
-}
 
 
 /* ==========================================================================
@@ -1523,4 +1506,116 @@ h1.hero-h1 {
     font-size: 78px !important;
     line-height: 1.02 !important;
   }
+}
+
+/* ==========================================================================
+   PADRONIZAÇÃO MESTRE UNIVERSAL: FONTES MAIORES, CENTRALIZAÇÃO & VÍDEO EXPANDIDO
+   ========================================================================== */
+
+/* 1. VÍDEO: LARGURA AMPLA (MAX-W-6XL / W-FULL), ALTURA CONTIDA E PROPORCIONAL */
+#video div[class*="rounded-[2"] {
+  width: 100% !important;
+  max-width: 1140px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#video video {
+  width: 100% !important;
+  max-height: 480px !important;
+  height: auto !important;
+  object-fit: cover !important;
+  border-radius: 24px !important;
+}
+
+@media (max-width: 640px) {
+  #video video {
+    max-height: 280px !important;
+  }
+}
+
+/* 2. CENTRALIZAÇÃO ABSOLUTA & PADRONIZAÇÃO DE TÍTULOS (H2, H3, EYEBROWS) */
+h2.font-serif-display,
+h3.font-serif-display,
+.font-serif-display {
+  font-family: 'Fraunces', 'Cinzel', Georgia, serif !important;
+  text-align: center !important;
+}
+
+/* 3. ESCALA TIPOGRÁFICA ÁUREA (FONTES MAIORES E IMPONENTES) */
+h2.font-serif-display {
+  font-size: clamp(34px, 5.5vw, 68px) !important;
+  line-height: 1.08 !important;
+  font-weight: 700 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+h3.font-serif-display {
+  font-size: clamp(26px, 4vw, 48px) !important;
+  line-height: 1.15 !important;
+  font-weight: 700 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+/* Subtítulos relaxados, legíveis e com fonte nobre */
+div.max-w-3xl > p.text-lg,
+div.max-w-4xl > p.text-lg,
+section p.text-lg {
+  font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif !important;
+  font-size: clamp(17px, 2.2vw, 22px) !important;
+  line-height: 1.7 !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* 4. CENTRALIZAÇÃO ESPECÍFICA DE SEÇÕES SOLICITADAS PELO USUÁRIO */
+#sobre,
+#sobre > div,
+#sobre div,
+#sobre h2,
+#sobre p {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#sobre p {
+  font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 19px !important;
+  line-height: 1.7 !important;
+  max-width: 780px !important;
+}
+
+#sobre a[href="#diagnostico"] {
+  margin: 1.5rem auto 0 auto !important;
+  display: inline-flex !important;
+}
+
+/* O seu caminho no tempo */
+#renda-passiva div[class*="border-white"] {
+  text-align: center !important;
+}
+
+#renda-passiva h3 {
+  text-align: center !important;
+  font-size: clamp(28px, 4.5vw, 52px) !important;
+}
+
+/* Eyebrows nobres e centralizados */
+p[class*="tracking-[0.2"],
+.eyebrow {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.24em !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
