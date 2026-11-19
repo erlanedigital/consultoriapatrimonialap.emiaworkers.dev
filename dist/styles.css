@@ -2377,3 +2377,51 @@ article .text-center p,
     justify-items: end !important;
   }
 }
+
+
+/* === PADRAO FINAL DEFINITIVO AP === */
+header#header {
+  position: sticky !important;
+  top: var(--safe-area-inset-top, 0px) !important;
+  z-index: 50 !important;
+  background-color: rgba(250, 247, 242, 0.98) !important;
+}
+
+/* Centralizar todos os cabeçalhos de seção */
+section > div > div.max-w-3xl,
+section > div > div.max-w-4xl,
+section > div > div.max-w-5xl,
+section .section-header {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+section > div > div.max-w-3xl > p,
+section > div > div.max-w-3xl > h2,
+section > div > div.max-w-4xl > p,
+section > div > div.max-w-4xl > h2,
+section > div > div.max-w-5xl > p,
+section > div > div.max-w-5xl > h2,
+section .section-header > p,
+section .section-header > h2 {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Justificar textos corridos de parágrafos em cards/artigos (preservando labels e cabeçalhos centralizados) */
+article p:not(.text-center):not([class*="tracking-"]):not(.font-serif-display) {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+}
+
+/* Preservar centralização em #sobre, #faq e #estrategia-agio */
+#sobre .text-center, #sobre .text-center h2, #sobre .text-center p,
+#faq .text-center, #faq .text-center h2, #faq .text-center p,
+#estrategia-agio .text-center, #estrategia-agio .text-center h2, #estrategia-agio .text-center h3, #estrategia-agio .text-center p {
+  text-align: center !important;
+}
+#sobre p.text-justify {
+  text-align: justify !important;
+}

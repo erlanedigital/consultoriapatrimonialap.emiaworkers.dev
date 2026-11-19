@@ -210,7 +210,7 @@ try {
       '      <span>⏳</span> SIMULADOR DE APOSENTADORIA & RENDA PASSIVA',
       '    </span>',
             '    <h2 class="sim-h2-title" style="font-family: Fraunces, Georgia, serif; font-weight: 700; color: #3D0C16; margin: 18px auto 12px auto; line-height: 1.18; max-width: 960px; text-align: center;"><span class="sim-line-1" style="display: block; font-size: clamp(15px, 4.1vw, 42px); white-space: nowrap;">Planeje sua aposentadoria com patrimônio próprio,</span><span class="sim-line-2" style="display: block; font-size: clamp(16px, 4.4vw, 44px); white-space: nowrap;">sem depender só do INSS</span></h2>',
-      '    <p style="font-size: clamp(16px, 2vw, 19px); line-height: 1.6; color: #6E5B57; margin: 0 auto; max-width: 720px;">',
+      '    <p style="font-size: clamp(16px, 2vw, 19px); line-height: 1.6; color: #6E5B57; margin: 0 auto; max-width: 720px; text-align: center !important;">',
       '      Descubra com quantos anos você encerra o seu consórcio, qual a parcela reduzida até a contemplação e quanto você receberá de renda passiva mensal.',
       '    </p>',
       '  </div>',
