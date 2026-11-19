@@ -1919,11 +1919,10 @@ div:has(> p:first-child[class*="tracking-[0.18em]"]:first-child) {
 /* ==========================================================================
    RESPOSTAS DO FAQ ALINHADAS RIGOROSAMENTE À ESQUERDA
    ========================================================================== */
-#faq p,
 #faq button,
 #faq .divide-y p,
 #faq [aria-expanded] + p,
-#faq p.leading-relaxed {
+#faq .divide-y p.leading-relaxed {
   text-align: left !important;
   text-justify: auto !important;
   margin-left: 0 !important;
@@ -2358,6 +2357,12 @@ header nav[aria-label="Navegação rápida"]::-webkit-scrollbar {
 #estrategia-agio .text-center p,
 article .text-center,
 article .text-center h3,
-article .text-center p {
+article .text-center p,
+#faq .text-center,
+#faq .text-center p,
+#faq .text-center h2,
+#faq .max-w-4xl > p {
   text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
