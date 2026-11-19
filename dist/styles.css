@@ -2366,3 +2366,14 @@ article .text-center p,
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+@media (min-width: 768px) {
+  footer .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  footer nav.md\:text-right,
+  footer .md\:text-right {
+    text-align: right !important;
+    justify-items: end !important;
+  }
+}
