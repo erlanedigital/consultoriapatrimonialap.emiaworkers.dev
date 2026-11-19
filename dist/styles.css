@@ -2351,3 +2351,13 @@ header nav[aria-label="Navegação rápida"] {
 header nav[aria-label="Navegação rápida"]::-webkit-scrollbar {
   display: none !important; /* Chrome, Safari, Opera */
 }
+
+/* Centralização garantida para cabeçalhos .text-center dentro de sections/articles */
+#estrategia-agio .text-center,
+#estrategia-agio .text-center h3,
+#estrategia-agio .text-center p,
+article .text-center,
+article .text-center h3,
+article .text-center p {
+  text-align: center !important;
+}
