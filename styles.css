@@ -2805,3 +2805,195 @@ header nav[aria-label="Navegação rápida"] {
     justify-content: flex-start !important;
   }
 }
+
+
+/* BORDAS ARREDONDADAS PREMIUM PARA VIDEOS */
+video, .video-js, #video video, [id*="video"] video, .video-container video, iframe[src*="youtube"], iframe[src*="vimeo"] {
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  box-shadow: 0 15px 35px rgba(90, 18, 32, 0.15) !important;
+  border: 2px solid rgba(201, 168, 106, 0.35) !important;
+}
+
+
+/* FORÇA CENTRALIZAÇÃO UNIVERSAL DE TÍTULOS E SUBTÍTULOS */
+h1, h2, h3, .sim-h2-title, [class*="title"], [class*="eyebrow"], [class*="heading"] {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+section > div > div:first-child,
+section header,
+.section-header,
+[class*="header"] {
+  text-align: center !important;
+}
+
+p[class*="copy"], p[class*="subtitle"], p[class*="subheading"] {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ALERTA DE NÃO CONTEMPLAÇÃO EM UMA LINHA SÓ */
+.alerta-contemplacao-oneline, [id*="alerta-contemplacao"], [class*="alerta-contemplacao"] {
+  font-size: clamp(11px, 1.2vw, 13px) !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  line-height: 1.4 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+@media (max-width: 640px) {
+  .alerta-contemplacao-oneline, [id*="alerta-contemplacao"] {
+    font-size: 11px !important;
+    white-space: normal !important;
+    line-height: 1.3 !important;
+  }
+}
+
+
+/* ALINHAMENTO À ESQUERDA DO QUE FICA AO LADO DO ÍCONE NOS CARDS/PILLS */
+aside div:has(> span),
+aside [class*="rounded"],
+div:has(> span:first-child) div,
+div:has(> span:first-child) p,
+div:has(> span:first-child) h3,
+div:has(> span:first-child) strong,
+.card-pill-content,
+[class*="rounded"] div:not(:first-child) {
+  text-align: left !important;
+}
+
+aside [class*="rounded-2xl"],
+aside [class*="rounded-3xl"],
+aside [class*="rounded-full"] {
+  text-align: left !important;
+}
+
+aside [class*="rounded"] p,
+aside [class*="rounded"] span:not(:first-child),
+aside [class*="rounded"] div {
+  text-align: left !important;
+}
+
+
+/* ==========================================================================
+   PADRÃO MESTRE: SOLICITAÇÃO ESPECÍFICA DO USUÁRIO (FONTES MAIORES, CARDS À ESQUERDA, BADGE CENTRALIZADO)
+   ========================================================================== */
+
+/* 1. BADGE DESTAQUES DO ATENDIMENTO: CENTRALIZADO E FONTE MAIOR */
+ul[aria-label="Destaques do atendimento"],
+ul[class*="Destaques do atendimento"],
+.hero-checklist,
+p[class*="flex flex-wrap items-center gap-x-3"] {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  font-size: clamp(15px, 1.4vw, 17.5px) !important;
+  font-weight: 700 !important;
+  line-height: 1.6 !important;
+}
+
+ul[aria-label="Destaques do atendimento"] li,
+p[class*="flex flex-wrap items-center gap-x-3"] span {
+  font-size: clamp(15px, 1.4vw, 17.5px) !important;
+  font-weight: 700 !important;
+}
+
+/* 2. AUMENTAR A FONTE DE TODOS OS TÍTULOS H2 E SUBTÍTULOS DAS SEÇÕES */
+h2,
+.fluid-h2,
+section h2,
+.max-w-3xl.mx-auto.text-center h2 {
+  font-size: clamp(2.35rem, 4.8vw, 3.75rem) !important;
+  line-height: 1.15 !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-wrap: balance !important;
+  max-width: 950px !important;
+}
+
+/* Subtítulos abaixo dos H2 com fonte ampliada e arejada */
+.max-w-3xl.mx-auto.text-center > p:last-child,
+.max-w-3xl.mx-auto.text-center p[class*="leading-7"],
+section .max-w-3xl p[class*="text-"],
+section p.copy,
+section p[class*="text-[16px] leading-7"] {
+  font-size: clamp(1.15rem, 1.8vw, 1.35rem) !important;
+  line-height: 1.65 !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 880px !important;
+  text-wrap: balance !important;
+}
+
+/* 3. ALINHAMENTO À ESQUERDA RIGOROSO DENTRO DE TODOS OS CARDS E PASSOS */
+aside [class*="rounded"] div,
+aside [class*="rounded"] p,
+aside [class*="rounded"] h3,
+aside [class*="rounded"] span,
+section[class*="bg-[#5A1220]"] article,
+section[class*="bg-[#5A1220]"] [class*="rounded-"],
+article,
+.card,
+[class*="rounded-[24px]"],
+[class*="rounded-[28px]"] {
+  text-align: left !important;
+}
+
+section[class*="bg-[#5A1220]"] h3,
+section[class*="bg-[#5A1220]"] p,
+section[class*="bg-[#5A1220]"] span,
+article h3,
+article p,
+article span,
+.card h3,
+.card p,
+[class*="rounded-[24px]"] h3,
+[class*="rounded-[24px]"] p,
+[class*="rounded-[24px]"] span,
+[class*="rounded-[28px]"] h3,
+[class*="rounded-[28px]"] p {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+article h3,
+[class*="rounded-[24px]"] h3,
+[class*="rounded-[28px]"] h3,
+section[class*="bg-[#5A1220]"] h3 {
+  font-size: clamp(1.25rem, 2vw, 1.6rem) !important;
+  line-height: 1.3 !important;
+  text-align: left !important;
+  text-wrap: balance !important;
+}
+
+article p,
+[class*="rounded-[24px]"] p,
+[class*="rounded-[28px]"] p,
+section[class*="bg-[#5A1220]"] p {
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem) !important;
+  line-height: 1.65 !important;
+  text-align: left !important;
+  text-wrap: pretty !important;
+}
+
+/* 4. ELIMINAÇÃO TOTAL DE PALAVRAS ÓRFÃS EM TODO O SITE */
+h1, h2, h3, h4, h5, h6, .fluid-h1, .fluid-h2 {
+  text-wrap: balance !important;
+}
+p, span, li, blockquote {
+  text-wrap: pretty !important;
+}

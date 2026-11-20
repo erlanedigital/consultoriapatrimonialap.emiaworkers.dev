@@ -284,11 +284,9 @@ try {
 
   function ensureSimulatorAboveFooter() {
 
-    var footer = document.querySelector('footer');
+    var faqEl = document.getElementById('faq');
 
     var sim = document.getElementById('simulador');
-
-    if (!footer || !footer.parentNode) return;
 
 
 
@@ -302,9 +300,10 @@ try {
 
 
 
-    if (sim && footer && sim.nextElementSibling !== footer) {
+    // Garante que o simulador está imediatamente antes do #faq
+    if (sim && faqEl && faqEl.parentNode && sim.nextElementSibling !== faqEl) {
 
-      footer.parentNode.insertBefore(sim, footer);
+      faqEl.parentNode.insertBefore(sim, faqEl);
 
     }
 
@@ -444,10 +443,10 @@ try {
       '</div>'
     ].join('\n');
 
-    // REORDENAÇÃO MESTRE: Simulador acima do Formulário, FAQ acima do Rodapé!
-    var diag = document.getElementById('diagnostico');
-    if (diag && diag.parentNode) {
-      diag.parentNode.insertBefore(section, diag);
+    // REORDENAÇÃO MESTRE: Simulador ANTES do FAQ (no lugar das perguntas)
+    var faqTarget = document.getElementById('faq');
+    if (faqTarget && faqTarget.parentNode) {
+      faqTarget.parentNode.insertBefore(section, faqTarget);
     } else {
       var footer = document.querySelector('footer');
       if (footer && footer.parentNode) {
@@ -459,12 +458,6 @@ try {
 
     var host = document.getElementById('simulador-host');
     if (host) host.remove();
-
-    var faq = document.getElementById('faq');
-    var footer = document.querySelector('footer');
-    if (faq && footer && footer.parentNode && faq.nextSibling !== footer) {
-      footer.parentNode.insertBefore(faq, footer);
-    }
 
     updateSimulatorUI();
   }
@@ -2220,3 +2213,350 @@ try {
 
   };
 
+
+
+/* INJEÇÃO AUTOMÁTICA DOS BLOCOS OFICIAIS CONSULTORIA PATRIMONIAL */
+(function() {
+  function injectBlocks() {
+    // 1. Injetar "Por que construir patrimônio via consórcio?"
+    if (!document.getElementById('por-que-consorcio')) {
+      var sec = document.createElement('section');
+      sec.id = 'por-que-consorcio';
+      sec.className = 'bg-[#FAF6EF] py-16 sm:py-24 border-t border-b border-[#C9A86A]/25';
+      sec.style.cssText = 'font-family: "Plus Jakarta Sans", system-ui, sans-serif; width: 100%; box-sizing: border-box;';
+      sec.innerHTML = [
+        '<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" style="max-width: 1200px; margin: 0 auto; padding: 0 16px;">',
+        '  <div style="text-align: center; max-width: 800px; margin: 0 auto 40px auto;">',
+        '    <span style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border-radius: 999px; background: #5A1220; color: #F3E7C4; font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; border: 1px solid #C9A86A;">',
+        '      SEGURANÇA & ALAVANCAGEM FINANCEIRA',
+        '    </span>',
+        '    <h2 style="font-family: Fraunces, Georgia, serif; font-size: clamp(26px, 4vw, 42px); font-weight: 700; color: #5A1220; margin: 18px 0 12px 0; line-height: 1.2;">',
+        '      Por que construir patrimônio <span style="font-style: italic; color: #8A6E3E;">via consórcio?</span>',
+        '    </h2>',
+        '    <p style="font-size: 16px; color: #6B5A5E; line-height: 1.6; margin: 0 auto; max-width: 700px;">',
+        '      Uma estratégia sólida e planejada, sem juros abusivos de financiamento e com poder de compra à vista para a sua aposentadoria e geração de renda passiva com imóveis.',
+        '    </p>',
+        '  </div>',
+        '  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">',
+        '    <div style="background: #FFFFFF; border-radius: 24px; padding: 28px; border: 1px solid rgba(201,168,106,0.3); box-shadow: 0 4px 20px rgba(90,18,32,0.04);">',
+        '      <div style="width: 48px; height: 48px; border-radius: 16px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; margin-bottom: 20px;">✓</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 700; color: #5A1220; margin-bottom: 12px;">100% Regulamentado</h3>',
+        '      <p style="font-size: 14.5px; line-height: 1.6; color: #6B5A5E;">Fiscalizado pelo <strong>Banco Central do Brasil (Lei 11.795/08)</strong>, garantindo total segregação patrimonial e proteção ao grupo.</p>',
+        '    </div>',
+        '    <div style="background: #FFFFFF; border-radius: 24px; padding: 28px; border: 1px solid rgba(201,168,106,0.3); box-shadow: 0 4px 20px rgba(90,18,32,0.04);">',
+        '      <div style="width: 48px; height: 48px; border-radius: 16px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; margin-bottom: 20px;">$</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 700; color: #5A1220; margin-bottom: 12px;">Poder de Compra à Vista</h3>',
+        '      <p style="font-size: 14.5px; line-height: 1.6; color: #6B5A5E;">Na contemplação, você negocia com poder de pagamento à vista, obtendo descontos expressivos para a sua aposentadoria e geração de renda passiva com imóveis.</p>',
+        '    </div>',
+        '    <div style="background: #FFFFFF; border-radius: 24px; padding: 28px; border: 1px solid rgba(201,168,106,0.3); box-shadow: 0 4px 20px rgba(90,18,32,0.04);">',
+        '      <div style="width: 48px; height: 48px; border-radius: 16px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; margin-bottom: 20px;">★</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 700; color: #5A1220; margin-bottom: 12px;">Zero Juros Bancários</h3>',
+        '      <p style="font-size: 14.5px; line-height: 1.6; color: #6B5A5E;">Sem parcelas que triplicam o valor do patrimônio. Apenas taxa de administração justa diluída em todo o plano.</p>',
+        '    </div>',
+        '  </div>',
+        '</div>'
+      ].join('\n');
+
+      var target = document.getElementById('como-funciona') || document.getElementById('vantagens') || document.getElementById('simulador');
+      if (target && target.parentNode) {
+        target.parentNode.insertBefore(sec, target);
+      }
+    }
+
+    // 2. Injetar "Como você pode ser contemplado" (com o alerta correto)
+    if (!document.getElementById('contemplacao')) {
+      var contSec = document.createElement('section');
+      contSec.id = 'contemplacao';
+      contSec.style.cssText = 'background: #FFFFFF; padding: 70px 0; border-bottom: 1px solid rgba(201,168,106,0.25); font-family: "Plus Jakarta Sans", system-ui, sans-serif; width: 100%; box-sizing: border-box;';
+      contSec.innerHTML = [
+        '<div style="max-width: 1200px; margin: 0 auto; padding: 0 16px;">',
+        '  <div style="text-align: center; max-width: 800px; margin: 0 auto 36px auto;">',
+        '    <span style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border-radius: 999px; background: #5A1220; color: #F3E7C4; font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; border: 1px solid #C9A86A;">',
+        '      SUA CONTEMPLAÇÃO, COM TRANSPARÊNCIA',
+        '    </span>',
+        '    <h2 style="font-family: Fraunces, Georgia, serif; font-size: clamp(26px, 4vw, 42px); font-weight: 700; color: #5A1220; margin: 18px 0 12px 0; line-height: 1.2;">',
+        '      Como você pode ser <span style="font-style: italic; color: #8A6E3E;">contemplado</span>',
+        '    </h2>',
+        '    <p style="font-size: 16px; color: #6B5A5E; line-height: 1.6; margin: 0 auto; max-width: 700px;">',
+        '      Entenda as formas de contemplação disponíveis no consórcio para planejar a conquista do seu objetivo.',
+        '    </p>',
+        '  </div>',
+        '  <!-- ALERTA OFICIAL: SEM PALAVRA ADMINISTRADORA, TERMINANDO EM GRUPO -->',
+        '  <div style="margin-bottom: 36px; display: flex; align-items: flex-start; gap: 16px; border-radius: 20px; border: 1.5px solid #C9A86A; background: #FFF9EE; padding: 20px 24px; box-shadow: 0 4px 15px rgba(90,18,32,0.04);">',
+        '    <div style="display: flex; height: 38px; width: 38px; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 999px; background: #5A1220; color: #C9A86A; font-size: 18px; font-weight: bold;">⚠️</div>',
+        '    <p style="font-size: 15px; font-weight: 600; line-height: 1.6; color: #5A1220; margin: 0;">',
+        '      <strong>Importante:</strong> Não tem como garantir prazo da sua contemplação. Sua contemplação depende do sorteio e de lances, conforme as regras do grupo.',
+        '    </p>',
+        '  </div>',
+        '  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">',
+        '    <div style="border-radius: 24px; border: 1px solid rgba(201,168,106,0.3); background: #FAF6EF; padding: 26px; display: flex; flex-direction: column;">',
+        '      <div style="width: 44px; height: 44px; border-radius: 14px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; margin-bottom: 16px;">01</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 700; color: #5A1220; margin: 0 0 10px 0;">Sorteio</h3>',
+        '      <p style="font-size: 14px; line-height: 1.6; color: #6B5A5E; margin: 0;">Assembleias mensais onde todos os participantes pontuais concorrem em igualdade de condições.</p>',
+        '    </div>',
+        '    <div style="border-radius: 24px; border: 1px solid rgba(201,168,106,0.3); background: #FAF6EF; padding: 26px; display: flex; flex-direction: column;">',
+        '      <div style="width: 44px; height: 44px; border-radius: 14px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; margin-bottom: 16px;">02</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 700; color: #5A1220; margin: 0 0 10px 0;">Lance Livre</h3>',
+        '      <p style="font-size: 14px; line-height: 1.6; color: #6B5A5E; margin: 0;">Oferta de percentual com recursos próprios para adiantar a contemplação da sua cota.</p>',
+        '    </div>',
+        '    <div style="border-radius: 24px; border: 1px solid rgba(201,168,106,0.3); background: #FAF6EF; padding: 26px; display: flex; flex-direction: column;">',
+        '      <div style="width: 44px; height: 44px; border-radius: 14px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; margin-bottom: 16px;">03</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 700; color: #5A1220; margin: 0 0 10px 0;">Lance Embutido</h3>',
+        '      <p style="font-size: 14px; line-height: 1.6; color: #6B5A5E; margin: 0;">Utilize parte do próprio crédito como lance, aumentando suas chances sem precisar dispor de capital imediato.</p>',
+        '    </div>',
+        '    <div style="border-radius: 24px; border: 1px solid rgba(201,168,106,0.3); background: #FAF6EF; padding: 26px; display: flex; flex-direction: column;">',
+        '      <div style="width: 44px; height: 44px; border-radius: 14px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; margin-bottom: 16px;">04</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 700; color: #5A1220; margin: 0 0 10px 0;">Lance Fidelidade</h3>',
+        '      <p style="font-size: 14px; line-height: 1.6; color: #6B5A5E; margin: 0;">Critérios de prioridade e pontualidade definidos nas regras do grupo que valorizam o bom pagador.</p>',
+        '    </div>',
+        '    <div style="border-radius: 24px; border: 1px solid rgba(201,168,106,0.3); background: #FAF6EF; padding: 26px; display: flex; flex-direction: column;">',
+        '      <div style="width: 44px; height: 44px; border-radius: 14px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; margin-bottom: 16px;">05</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 700; color: #5A1220; margin: 0 0 10px 0;">Lance Fixo</h3>',
+        '      <p style="font-size: 14px; line-height: 1.6; color: #6B5A5E; margin: 0;">Percentual pré-determinado pelo regulamento do grupo com desempate justo baseado na extração da loteria.</p>',
+        '    </div>',
+        '    <div style="border-radius: 24px; background: #5A1220; color: #FFFFFF; padding: 26px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #C9A86A;">',
+        '      <div>',
+        '        <p style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.18em; color: #E4C98E; margin: 0 0 8px 0;">Estratégia sob medida</p>',
+        '        <h3 style="font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 700; margin: 0 0 10px 0; color: #FFFFFF;">A Erlane ajuda você a definir a melhor rota.</h3>',
+        '        <p style="font-size: 13.5px; line-height: 1.6; color: rgba(255,255,255,0.8); margin: 0;">Acompanhamento profissional para identificar o melhor momento de ofertar seu lance com clareza.</p>',
+        '      </div>',
+        '      <a href="#diagnostico" style="margin-top: 18px; display: inline-flex; align-items: center; justify-content: center; padding: 12px 20px; border-radius: 999px; background: #C9A86A; color: #5A1220; font-size: 13px; font-weight: 800; text-decoration: none;">Planejar no WhatsApp ➔</a>',
+        '    </div>',
+        '  </div>',
+        '</div>'
+      ].join('\n');
+
+      var faqEl = document.getElementById('faq') || document.querySelector('footer');
+      if (faqEl && faqEl.parentNode) {
+        faqEl.parentNode.insertBefore(contSec, faqEl);
+      }
+    }
+  }
+
+  if (document.readyState !== 'loading') {
+    injectBlocks();
+    setTimeout(injectBlocks, 500);
+    setTimeout(injectBlocks, 1500);
+  } else {
+    document.addEventListener('DOMContentLoaded', function() {
+      injectBlocks();
+      setTimeout(injectBlocks, 500);
+      setTimeout(injectBlocks, 1500);
+    });
+  }
+})();
+
+
+/* ORDENADOR MESTRE DE USABILIDADE ÁUREA */
+(function() {
+  function organizeSections() {
+    var desiredOrder = [
+      'hero',
+      'video',
+      'video-showcase-section',
+      'para-quem',
+      'por-que-consorcio',
+      'como-funciona',
+      'vantagens',
+      'moeda-forte',
+      'valor-flexivel',
+      'contemplacao',
+      'depois-da-contemplacao',
+      'simulador',
+      'faq',
+      'diagnostico',
+      'sobre',
+      'cta-final-patrimonio'
+    ];
+
+    var footer = document.querySelector('footer');
+    if (!footer || !footer.parentNode) return;
+    var container = footer.parentNode;
+
+    // Reposiciona na ordem certa antes do footer
+    desiredOrder.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.parentNode === container) {
+        container.insertBefore(el, footer);
+      }
+    });
+
+    // Garante que o Sobre a Erlane fique logo antes do footer
+    var sobre = document.getElementById('sobre');
+    if (sobre && sobre.parentNode === container && sobre.nextElementSibling !== footer) {
+      container.insertBefore(sobre, footer);
+    }
+  }
+
+  if (document.readyState !== 'loading') {
+    organizeSections();
+    setTimeout(organizeSections, 300);
+    setTimeout(organizeSections, 1000);
+    setTimeout(organizeSections, 2500);
+  } else {
+    document.addEventListener('DOMContentLoaded', function() {
+      organizeSections();
+      setTimeout(organizeSections, 300);
+      setTimeout(organizeSections, 1000);
+      setTimeout(organizeSections, 2500);
+    });
+  }
+})();
+
+
+/* ORDENAÇÃO E INJEÇÃO REAL DOS BLOCOS */
+(function() {
+  function setupBlocks() {
+    // 1. INJETAR "POR QUE CONSTRUIR PATRIMÔNIO VIA CONSÓRCIO" SE NÃO EXISTIR
+    if (!document.getElementById('por-que-consorcio')) {
+      var sec = document.createElement('section');
+      sec.id = 'por-que-consorcio';
+      sec.style.cssText = 'background: #FAF6EF; padding: 60px 0; border-top: 1px solid rgba(201,168,106,0.3); border-bottom: 1px solid rgba(201,168,106,0.3); font-family: "Plus Jakarta Sans", system-ui, sans-serif; width: 100%; box-sizing: border-box;';
+      sec.innerHTML = [
+        '<div style="max-width: 1200px; margin: 0 auto; padding: 0 16px;">',
+        '  <div style="text-align: center; max-width: 800px; margin: 0 auto 36px auto;">',
+        '    <span style="display: inline-flex; align-items: center; gap: 8px; padding: 5px 16px; border-radius: 999px; background: #5A1220; color: #F3E7C4; font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; border: 1px solid #C9A86A;">',
+        '      SEGURANÇA & DISCIPLINA',
+        '    </span>',
+        '    <h2 style="font-family: Fraunces, Georgia, serif; font-size: clamp(24px, 3.5vw, 38px); font-weight: 700; color: #5A1220; margin: 16px 0 10px 0; line-height: 1.2; text-align: center;">',
+        '      Por que construir patrimônio <span style="font-style: italic; color: #8A6E3E;">via consórcio?</span>',
+        '    </h2>',
+        '    <p style="font-size: 15px; color: #6B5A5E; line-height: 1.6; margin: 0 auto; max-width: 680px; text-align: center;">',
+        '      Compare a economia real em relação a financiamentos bancários convencionais.',
+        '    </p>',
+        '  </div>',
+        '  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">',
+        '    <div style="background: #FFFFFF; border-radius: 20px; padding: 24px; border: 1px solid rgba(201,168,106,0.3); box-shadow: 0 4px 15px rgba(90,18,32,0.04); text-align: center;">',
+        '      <div style="width: 44px; height: 44px; border-radius: 14px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; margin: 0 auto 16px auto;">✓</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 20px; font-weight: 700; color: #5A1220; margin-bottom: 10px; text-align: center;">100% Regulamentado</h3>',
+        '      <p style="font-size: 14px; line-height: 1.6; color: #6B5A5E; text-align: center;">Fiscalizado pelo <strong>Banco Central do Brasil (Lei 11.795/08)</strong>, com total segregação e proteção jurídica dos recursos.</p>',
+        '    </div>',
+        '    <div style="background: #FFFFFF; border-radius: 20px; padding: 24px; border: 1px solid rgba(201,168,106,0.3); box-shadow: 0 4px 15px rgba(90,18,32,0.04); text-align: center;">',
+        '      <div style="width: 44px; height: 44px; border-radius: 14px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; margin: 0 auto 16px auto;">$</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 20px; font-weight: 700; color: #5A1220; margin-bottom: 10px; text-align: center;">Poder de Compra à Vista</h3>',
+        '      <p style="font-size: 14px; line-height: 1.6; color: #6B5A5E; text-align: center;">Na contemplação, você negocia com poder de dinheiro à vista, garantindo descontos reais de mercado.</p>',
+        '    </div>',
+        '    <div style="background: #FFFFFF; border-radius: 20px; padding: 24px; border: 1px solid rgba(201,168,106,0.3); box-shadow: 0 4px 15px rgba(90,18,32,0.04); text-align: center;">',
+        '      <div style="width: 44px; height: 44px; border-radius: 14px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; margin: 0 auto 16px auto;">★</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 20px; font-weight: 700; color: #5A1220; margin-bottom: 10px; text-align: center;">Zero Juros Bancários</h3>',
+        '      <p style="font-size: 14px; line-height: 1.6; color: #6B5A5E; text-align: center;">Sem juros compostos que duplicam ou triplicam o valor do patrimônio. Apenas taxa de administração diluída.</p>',
+        '    </div>',
+        '  </div>',
+        '</div>'
+      ].join('\n');
+      document.body.appendChild(sec);
+    }
+
+    // 2. INJETAR "COMO VOCÊ PODE SER CONTEMPLADO" COM ALERTA EM UMA LINHA
+    if (!document.getElementById('contemplacao')) {
+      var contSec = document.createElement('section');
+      contSec.id = 'contemplacao';
+      contSec.style.cssText = 'background: #FFFFFF; padding: 60px 0; border-top: 1px solid rgba(201,168,106,0.25); border-bottom: 1px solid rgba(201,168,106,0.25); font-family: "Plus Jakarta Sans", system-ui, sans-serif; width: 100%; box-sizing: border-box;';
+      contSec.innerHTML = [
+        '<div style="max-width: 1200px; margin: 0 auto; padding: 0 16px;">',
+        '  <div style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">',
+        '    <span style="display: inline-flex; align-items: center; gap: 8px; padding: 5px 16px; border-radius: 999px; background: #5A1220; color: #F3E7C4; font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; border: 1px solid #C9A86A;">',
+        '      SUA CONTEMPLAÇÃO, COM TRANSPARÊNCIA',
+        '    </span>',
+        '    <h2 style="font-family: Fraunces, Georgia, serif; font-size: clamp(24px, 3.5vw, 38px); font-weight: 700; color: #5A1220; margin: 16px 0 10px 0; line-height: 1.2; text-align: center;">',
+        '      Como você pode ser <span style="font-style: italic; color: #8A6E3E;">contemplado</span>',
+        '    </h2>',
+        '    <p style="font-size: 15px; color: #6B5A5E; line-height: 1.6; margin: 0 auto; max-width: 680px; text-align: center;">',
+        '      Existem várias formas de contemplação que se adaptam ao seu momento e planejamento financeiro.',
+        '    </p>',
+        '  </div>',
+        '  <!-- ALERTA EM UMA LINHA SÓ -->',
+        '  <div style="margin: 0 auto 30px auto; max-width: 900px; border-radius: 999px; border: 1.5px solid #C9A86A; background: #FFF9EE; padding: 10px 24px; box-shadow: 0 2px 10px rgba(90,18,32,0.04); display: flex; align-items: center; justify-content: center; gap: 10px; text-align: center;">',
+        '    <span style="font-size: 15px; line-height: 1;">⚠️</span>',
+        '    <span style="font-size: clamp(11.5px, 1.2vw, 13px); font-weight: 700; color: #5A1220; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">',
+        '      Não tem como garantir prazo da sua contemplação. Sua contemplação depende do sorteio e de lances, conforme as regras do grupo.',
+        '    </span>',
+        '  </div>',
+        '  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;">',
+        '    <div style="border-radius: 20px; border: 1px solid rgba(201,168,106,0.3); background: #FAF6EF; padding: 22px; text-align: center;">',
+        '      <div style="width: 40px; height: 40px; border-radius: 12px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; margin: 0 auto 12px auto;">01</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 700; color: #5A1220; margin: 0 0 8px 0; text-align: center;">Sorteio</h3>',
+        '      <p style="font-size: 13.5px; line-height: 1.5; color: #6B5A5E; margin: 0; text-align: center;">Assembleias mensais onde todos os participantes ativos concorrem em igualdade de condições.</p>',
+        '    </div>',
+        '    <div style="border-radius: 20px; border: 1px solid rgba(201,168,106,0.3); background: #FAF6EF; padding: 22px; text-align: center;">',
+        '      <div style="width: 40px; height: 40px; border-radius: 12px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; margin: 0 auto 12px auto;">02</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 700; color: #5A1220; margin: 0 0 8px 0; text-align: center;">Lance Livre</h3>',
+        '      <p style="font-size: 13.5px; line-height: 1.5; color: #6B5A5E; margin: 0; text-align: center;">Oferte o percentual que desejar com recursos próprios para adiantar sua contemplação.</p>',
+        '    </div>',
+        '    <div style="border-radius: 20px; border: 1px solid rgba(201,168,106,0.3); background: #FAF6EF; padding: 22px; text-align: center;">',
+        '      <div style="width: 40px; height: 40px; border-radius: 12px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; margin: 0 auto 12px auto;">03</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 700; color: #5A1220; margin: 0 0 8px 0; text-align: center;">Lance Embutido</h3>',
+        '      <p style="font-size: 13.5px; line-height: 1.5; color: #6B5A5E; margin: 0; text-align: center;">Utilize parte do próprio crédito como lance, sem precisar ter todo o dinheiro guardado.</p>',
+        '    </div>',
+        '    <div style="border-radius: 20px; border: 1px solid rgba(201,168,106,0.3); background: #FAF6EF; padding: 22px; text-align: center;">',
+        '      <div style="width: 40px; height: 40px; border-radius: 12px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; margin: 0 auto 12px auto;">04</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 700; color: #5A1220; margin: 0 0 8px 0; text-align: center;">Lance Fidelidade</h3>',
+        '      <p style="font-size: 13.5px; line-height: 1.5; color: #6B5A5E; margin: 0; text-align: center;">Vantagens e critérios especiais nas regras do grupo que valorizam sua pontualidade.</p>',
+        '    </div>',
+        '    <div style="border-radius: 20px; border: 1px solid rgba(201,168,106,0.3); background: #FAF6EF; padding: 22px; text-align: center;">',
+        '      <div style="width: 40px; height: 40px; border-radius: 12px; background: #5A1220; color: #C9A86A; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; margin: 0 auto 12px auto;">05</div>',
+        '      <h3 style="font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 700; color: #5A1220; margin: 0 0 8px 0; text-align: center;">Lance Fixo</h3>',
+        '      <p style="font-size: 13.5px; line-height: 1.5; color: #6B5A5E; margin: 0; text-align: center;">Percentual pré-definido pelo regulamento do grupo com desempate transparente no sorteio.</p>',
+        '    </div>',
+        '    <div style="border-radius: 20px; background: #5A1220; color: #FFFFFF; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #C9A86A; text-align: center;">',
+        '      <div>',
+        '        <p style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.16em; color: #E4C98E; margin: 0 0 6px 0;">Estratégia sob medida</p>',
+        '        <h3 style="font-family: Fraunces, Georgia, serif; font-size: 20px; font-weight: 700; margin: 0 0 8px 0; color: #FFFFFF; text-align: center;">A Erlane ajuda você a montar o plano ideal.</h3>',
+        '        <p style="font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 0; text-align: center;">Análise do seu momento e objetivo com total ética e transparência.</p>',
+        '      </div>',
+        '      <a href="#diagnostico" style="margin-top: 14px; display: inline-flex; align-items: center; justify-content: center; padding: 11px 18px; border-radius: 999px; background: #C9A86A; color: #5A1220; font-size: 13px; font-weight: 800; text-decoration: none;">Falar com Erlane ➔</a>',
+        '    </div>',
+        '  </div>',
+        '</div>'
+      ].join('\n');
+      document.body.appendChild(contSec);
+    }
+
+    // 3. REORGANIZAR TODAS AS SEÇÕES NA ORDEM PERFEITA
+    var footer = document.querySelector('footer');
+    if (!footer || !footer.parentNode) return;
+    var container = footer.parentNode;
+
+    var targetOrder = [
+      'para-quem',
+      'por-que-consorcio',
+      'como-funciona',
+      'vantagens',
+      'moeda-forte',
+      'valor-flexivel',
+      'contemplacao',
+      'depois-da-contemplacao',
+      'simulador',
+      'faq',
+      'diagnostico',
+      'sobre',
+      'cta-final-patrimonio'
+    ];
+
+    targetOrder.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        container.insertBefore(el, footer);
+      }
+    });
+
+    // Garante que o Sobre a Erlane fique logo antes do rodapé
+    var sobre = document.getElementById('sobre');
+    if (sobre) {
+      container.insertBefore(sobre, footer);
+    }
+  }
+
+  function run() {
+    setupBlocks();
+    setTimeout(setupBlocks, 200);
+    setTimeout(setupBlocks, 600);
+    setTimeout(setupBlocks, 1500);
+  }
+
+  if (document.readyState !== 'loading') {
+    run();
+  } else {
+    document.addEventListener('DOMContentLoaded', run);
+  }
+})();
