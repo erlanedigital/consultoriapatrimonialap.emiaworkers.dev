@@ -209,7 +209,7 @@ try {
       '    <span style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 20px; border-radius: 999px; background: #5A1220; color: #F3E7C4; font-size: 12px; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; border: 1.5px solid #C9A86A; box-shadow: 0 4px 14px rgba(90,18,32,0.15);">',
       '      <span>⏳</span> SIMULADOR DE APOSENTADORIA & RENDA PASSIVA',
       '    </span>',
-            '    <h2 class="sim-h2-title" style="font-family: Fraunces, Georgia, serif; font-weight: 700; color: #3D0C16; margin: 18px auto 12px auto; line-height: 1.18; max-width: 960px; text-align: center;"><span class="sim-line-1" style="display: block; font-size: clamp(15px, 4.1vw, 42px); white-space: nowrap;">Planeje sua aposentadoria com patrimônio próprio,</span><span class="sim-line-2" style="display: block; font-size: clamp(16px, 4.4vw, 44px); white-space: nowrap;">sem depender só do INSS</span></h2>',
+      '    <h2 class="sim-h2-title font-serif-display" style="font-family: Fraunces, Georgia, serif; font-weight: 700; color: #3D0C16; margin: 18px auto 14px auto; line-height: 1.12; max-width: 1080px; font-size: clamp(1.75rem, 3.5vw, 3.25rem); text-align: center; text-wrap: balance;">Planeje sua aposentadoria com patrimônio&nbsp;próprio,<br><em style="font-style: italic; color: #9B7A40;">sem depender só do&nbsp;INSS</em></h2>',
       '    <p style="font-size: clamp(16px, 2vw, 19px); line-height: 1.6; color: #6E5B57; margin: 0 auto; max-width: 720px; text-align: center !important;">',
       '      Descubra com quantos anos você encerra o seu consórcio, qual a parcela reduzida até a contemplação e quanto você receberá de renda passiva mensal.',
       '    </p>',
