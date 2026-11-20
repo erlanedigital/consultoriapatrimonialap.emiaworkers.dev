@@ -2425,3 +2425,13 @@ article p:not(.text-center):not([class*="tracking-"]):not(.font-serif-display) {
 #sobre p.text-justify {
   text-align: justify !important;
 }
+
+/* Etiquetas do formulário #diagnostico com mais respiro acima das caixas */
+#diagnostico label,
+#diagnostico p.mb-2 {
+  display: block !important;
+  margin-bottom: 0.75rem !important;
+}
+#diagnostico .grid.gap-4 {
+  gap: 1.35rem !important;
+}
