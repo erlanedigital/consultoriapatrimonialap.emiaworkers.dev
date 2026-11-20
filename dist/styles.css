@@ -2419,8 +2419,17 @@ article p:not(.text-center):not([class*="tracking-"]):not(.font-serif-display) {
 /* Preservar centralização em #sobre, #faq e #estrategia-agio */
 #sobre .text-center, #sobre .text-center h2, #sobre .text-center p,
 #faq .text-center, #faq .text-center h2, #faq .text-center p,
-#estrategia-agio .text-center, #estrategia-agio .text-center h2, #estrategia-agio .text-center h3, #estrategia-agio .text-center p {
+#estrategia-agio .text-center, #estrategia-agio .text-center h2, #estrategia-agio .text-center h3, #estrategia-agio .text-center p:not(.text-left) {
   text-align: center !important;
+}
+#estrategia-agio .justify-between > p.text-left {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+#estrategia-agio .justify-between > span {
+  margin-right: 0 !important;
+  margin-left: auto !important;
 }
 #sobre p.text-justify {
   text-align: justify !important;
@@ -2428,12 +2437,18 @@ article p:not(.text-center):not([class*="tracking-"]):not(.font-serif-display) {
 
 /* Etiquetas do formulário #diagnostico com mais respiro acima das caixas */
 #diagnostico label,
-#diagnostico p.mb-2 {
+#diagnostico p.mb-2,
+label[for="nome"],
+label[for="whatsapp"],
+label[for="cidade"],
+div:has(> input#nome) > label,
+div:has(> input#whatsapp) > label,
+div:has(> input#cidade) > label {
   display: block !important;
-  margin-bottom: 0.75rem !important;
+  margin-bottom: 1.15rem !important;
 }
 #diagnostico .grid.gap-4 {
-  gap: 1.35rem !important;
+  gap: 1.5rem !important;
 }
 
 /* === MENU ESTILO UBER GARANTIDO NO APOSENTADORIA (DESKTOP + MOBILE) === */
