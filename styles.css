@@ -2436,7 +2436,8 @@ article p:not(.text-center):not([class*="tracking-"]):not(.font-serif-display) {
 }
 
 /* Etiquetas do formulário #diagnostico com mais respiro acima das caixas */
-#diagnostico label,
+#diagnostico div:has(> input:not([type="radio"]):not([type="checkbox"])) > label,
+#diagnostico div:has(> select) > label,
 #diagnostico p.mb-2,
 label[for="nome"],
 label[for="whatsapp"],
@@ -2446,6 +2447,62 @@ div:has(> input#whatsapp) > label,
 div:has(> input#cidade) > label {
   display: block !important;
   margin-bottom: 1.15rem !important;
+}
+
+/* BOTÕES DE OBJETIVO NO FORMULÁRIO: TEXTO RIGOROSAMENTE CENTRALIZADO */
+#diagnostico fieldset label,
+#diagnostico label:has(input[type="radio"]),
+#diagnostico div.grid label {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin-bottom: 0 !important;
+  width: 100% !important;
+}
+
+#diagnostico fieldset label span,
+#diagnostico label:has(input[type="radio"]) span,
+#diagnostico div.grid label span {
+  text-align: center !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+/* ==========================================================================
+   MARCA DO TOPO (ERLANE MOTA / CONSULTORA PATRIMONIAL) RIGOROSAMENTE EM 2 LINHAS
+   ========================================================================== */
+header a[href="#topo"],
+header a[href="#topo"] * {
+  white-space: nowrap !important;
+}
+
+header a[href="#topo"] {
+  flex-shrink: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  min-width: max-content !important;
+}
+
+header a[href="#topo"] > span:first-child {
+  font-size: clamp(16px, 4vw, 20px) !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0.05em !important;
+  display: block !important;
+  white-space: nowrap !important;
+  color: #5A1220 !important;
+}
+
+header a[href="#topo"] > span:last-child {
+  font-size: clamp(9px, 2.2vw, 11px) !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.18em !important;
+  display: block !important;
+  white-space: nowrap !important;
+  color: #C9A86A !important;
+  margin-top: 2px !important;
 }
 #diagnostico .grid.gap-4 {
   gap: 1.5rem !important;
@@ -2511,5 +2568,240 @@ header#header nav[aria-label="Navegação rápida"] a:hover {
     padding: 8px 16px !important;
     border-top: 1px solid rgba(201, 168, 106, 0.25) !important;
     background-color: #FAF7F2 !important;
+  }
+}
+
+
+/* ==========================================================================
+   AJUSTES SUPREMOS: VÍDEO FULL-BLEED MOBILE, ALINHAMENTO À ESQUERDA & BOTÕES
+   ========================================================================== */
+
+/* 1. VÍDEO NO MOBILE E DESKTOP: PREENCHIMENTO COMPLETO DA CAIXA */
+#video div[class*="rounded-[2"],
+#video div[class*="overflow-hidden"],
+#video .relative {
+  width: 100% !important;
+  max-width: 1140px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#video video {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 240px !important;
+  max-height: 520px !important;
+  aspect-ratio: 16 / 9 !important;
+  object-fit: cover !important;
+  border-radius: 24px !important;
+  display: block !important;
+}
+
+@media (max-width: 640px) {
+  #video div[class*="rounded-[2"],
+  #video div[class*="overflow-hidden"],
+  #video .relative {
+    width: 100% !important;
+    border-radius: 20px !important;
+  }
+  #video video {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 200px !important;
+    max-height: 380px !important;
+    aspect-ratio: 16 / 9 !important;
+    object-fit: cover !important;
+    border-radius: 20px !important;
+  }
+}
+
+/* 2. 'O SEU CAMINHO NO TEMPO' (#renda-passiva): JUSTIFICADO À ESQUERDA */
+#renda-passiva div[class*="border-white"] {
+  text-align: left !important;
+}
+
+#renda-passiva div[class*="border-white"] h3 {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  font-size: clamp(24px, 3.8vw, 48px) !important;
+}
+
+#renda-passiva div[class*="border-white"] p[class*="tracking-"],
+#renda-passiva div[class*="border-white"] .eyebrow {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  display: block !important;
+}
+
+#renda-passiva div[class*="border-white"] div.flex {
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+/* 3. BOTÕES DE OBJETIVO EM #diagnostico: CENTRALIZAÇÃO ABSOLUTA DOS TEXTOS */
+#diagnostico fieldset div.grid label,
+#diagnostico fieldset label,
+#diagnostico div.grid label {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin-bottom: 0 !important;
+  width: 100% !important;
+}
+
+#diagnostico fieldset div.grid label span,
+#diagnostico fieldset label span,
+#diagnostico div.grid label span {
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+}
+
+/* 4. MARCA NO TOPO: ERLANE MOTA / CONSULTORA PATRIMONIAL RIGOROSAMENTE EM 2 LINHAS */
+header a[href="#topo"] {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+header a[href="#topo"] span {
+  white-space: nowrap !important;
+  display: block !important;
+}
+
+
+/* MENU SINCRONIZADO PERFEITAMENTE EM DESKTOP E MOBILE */
+header nav[aria-label="Navegação rápida"] {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow-x: auto !important;
+  white-space: nowrap !important;
+  justify-content: center !important;
+}
+
+@media (max-width: 1024px) {
+  header nav[aria-label="Navegação rápida"] {
+    justify-content: flex-start !important;
+  }
+}
+
+
+/* ==========================================================================
+   PADRÃO MESTRE: VÍDEO FULL-BLEED MOBILE, ALINHAMENTO À ESQUERDA, LOGO 2 LINHAS
+   ========================================================================== */
+
+/* 1. VÍDEO NO MOBILE E DESKTOP: PREENCHIMENTO COMPLETO DA CAIXA */
+#video div[class*="rounded-[2"],
+#video div[class*="overflow-hidden"],
+#video .relative {
+  width: 100% !important;
+  max-width: 1140px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#video video {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 240px !important;
+  max-height: 520px !important;
+  aspect-ratio: 16 / 9 !important;
+  object-fit: cover !important;
+  border-radius: 24px !important;
+  display: block !important;
+}
+
+@media (max-width: 640px) {
+  #video div[class*="rounded-[2"],
+  #video div[class*="overflow-hidden"],
+  #video .relative {
+    width: 100% !important;
+    border-radius: 20px !important;
+  }
+  #video video {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 200px !important;
+    max-height: 380px !important;
+    aspect-ratio: 16 / 9 !important;
+    object-fit: cover !important;
+    border-radius: 20px !important;
+  }
+}
+
+/* 2. 'O SEU CAMINHO NO TEMPO' (#renda-passiva): JUSTIFICADO À ESQUERDA */
+#renda-passiva div[class*="border-white"] {
+  text-align: left !important;
+}
+
+#renda-passiva div[class*="border-white"] h3 {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  font-size: clamp(24px, 3.8vw, 48px) !important;
+}
+
+#renda-passiva div[class*="border-white"] p[class*="tracking-"],
+#renda-passiva div[class*="border-white"] .eyebrow {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  display: block !important;
+}
+
+/* 3. BOTÕES DE OBJETIVO EM #diagnostico: CENTRALIZAÇÃO ABSOLUTA DOS TEXTOS */
+#diagnostico fieldset div.grid label,
+#diagnostico fieldset label,
+#diagnostico div.grid label {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin-bottom: 0 !important;
+  width: 100% !important;
+}
+
+#diagnostico fieldset div.grid label *,
+#diagnostico fieldset label *,
+#diagnostico div.grid label * {
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+}
+
+/* 4. MARCA NO TOPO: ERLANE MOTA / CONSULTORA PATRIMONIAL RIGOROSAMENTE EM 2 LINHAS */
+header a[href="#topo"] {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+header a[href="#topo"] * {
+  white-space: nowrap !important;
+}
+
+/* 5. NAVEGAÇÃO RÁPIDA: VISÍVEL NO DESKTOP E NO MOBILE */
+header nav[aria-label="Navegação rápida"] {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow-x: auto !important;
+  white-space: nowrap !important;
+  justify-content: center !important;
+}
+@media (max-width: 1024px) {
+  header nav[aria-label="Navegação rápida"] {
+    justify-content: flex-start !important;
   }
 }

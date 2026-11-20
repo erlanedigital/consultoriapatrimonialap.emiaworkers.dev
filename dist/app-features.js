@@ -1,13 +1,129 @@
-// PERSISTÊNCIA ZERO ABSOLUTA — REGRA SUPREMA DO CLIENTE
+
+  function injectAPAdminModals() {
+    if (document.getElementById('modal-admin-login')) return;
+
+    const div = document.createElement('div');
+    div.id = 'ap-admin-modals-wrapper';
+    div.innerHTML = `
+      <!-- Modal Login -->
+      <div id="modal-admin-login" class="hidden" style="position: fixed; inset: 0; z-index: 999999 !important; background: rgba(29, 10, 16, 0.88); backdrop-filter: blur(14px); display: none; align-items: center; justify-content: center; padding: 16px; font-family: 'Manrope', system-ui, sans-serif;">
+        <div style="background: #1D0A10; border: 1.5px solid #C9A86A; border-radius: 24px; width: 100%; max-width: 420px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.7); color: #FAF6EF; padding: 32px 24px; text-align: center; position: relative;">
+          <button type="button" onclick="window.closeAdminLogin()" style="position: absolute; top: 12px; right: 16px; background: none; border: none; color: #FAF6EF; font-size: 24px; cursor: pointer;" title="Fechar">&times;</button>
+          <div style="font-size: 38px; margin-bottom: 12px;">🔒</div>
+          <h3 style="font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; color: #FFFFFF; margin: 0 0 8px 0;">Acesso Restrito</h3>
+          <p style="font-size: 13px; color: #C4B299; margin: 0 0 20px 0;">Digite a senha de consultora para acessar os leads recebidos.</p>
+          <form onsubmit="window.handleAdminLogin(event)" style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="text-align: left;">
+              <label style="display: block; font-size: 11px; font-weight: 800; text-transform: uppercase; color: #C9A86A; margin-bottom: 6px;">Senha:</label>
+              <input id="admin-pass-field" type="password" placeholder="Digite sua senha..." required autofocus style="width: 100%; box-sizing: border-box; background: #0F0407; border: 1.5px solid rgba(201, 168, 106, 0.4); color: #FFFFFF; font-size: 15px; padding: 12px 16px; border-radius: 12px; outline: none;" />
+              <div style="margin-top: 6px; font-size: 11px; color: #8A6E3E;">Senha padrão: <strong>erlane2026</strong></div>
+            </div>
+            <button type="submit" style="background: #C9A86A; color: #1D0A10; font-size: 14px; font-weight: 800; border: none; padding: 13px; border-radius: 12px; cursor: pointer;">
+              Entrar no Painel ➔
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal Dashboard -->
+      <div id="modal-admin-panel" class="hidden" style="position: fixed; inset: 0; z-index: 999999 !important; background: rgba(29, 10, 16, 0.88); backdrop-filter: blur(14px); display: none; align-items: center; justify-content: center; padding: 16px; font-family: 'Manrope', system-ui, sans-serif;">
+        <div style="background: #1D0A10; border: 1.5px solid #C9A86A; border-radius: 24px; width: 100%; max-width: 860px; max-height: 92vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.7); color: #FAF6EF;">
+          <div style="background: linear-gradient(135deg, #3B0B14 0%, #1D0A10 100%); padding: 18px 24px; border-bottom: 1px solid rgba(201,168,106,0.3); display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 40px; height: 40px; border-radius: 50%; background: #5A1220; border: 1.5px solid #C9A86A; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-weight: 700; color: #C9A86A; font-size: 16px;">EM</div>
+              <div>
+                <h2 style="font-size: 16px; font-weight: 800; color: #FFFFFF; margin: 0; line-height: 1.2;">Painel do Consultor — Aposentadoria</h2>
+                <p style="font-size: 11px; color: #C9A86A; margin: 2px 0 0 0; font-weight: 600;">Erlane Mota • Consultoria Patrimonial</p>
+              </div>
+            </div>
+            <button type="button" onclick="window.closeAdminPanel()" style="background: none; border: none; color: #FAF6EF; font-size: 26px; cursor: pointer;" title="Fechar">&times;</button>
+          </div>
+          <div style="padding: 20px; overflow-y: auto; flex: 1;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <span style="font-size: 14px; font-weight: 700; color: #FFFFFF;"><span id="admin-leads-counter">0</span> formulário(s) recebido(s)</span>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button type="button" onclick="window.logoutAdmin()" style="background: rgba(220,38,38,0.2); border: 1px solid #DC2626; color: #FCA5A5; padding: 6px 14px; border-radius: 8px; font-size: 11px; font-weight: 600; cursor: pointer;">Sair do Painel</button>
+              </div>
+            </div>
+            <div id="admin-leads-list-container"></div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(div);
+
+    // Fechar ao clicar no backdrop
+    const loginModal = document.getElementById('modal-admin-login');
+    if (loginModal) {
+      loginModal.addEventListener('click', function(e) {
+        if (e.target === loginModal) window.closeAdminLogin();
+      });
+    }
+    const panelModal = document.getElementById('modal-admin-panel');
+    if (panelModal) {
+      panelModal.addEventListener('click', function(e) {
+        if (e.target === panelModal) window.closeAdminPanel();
+      });
+    }
+
+    // Adicionar cadeado discreto no rodapé
+    const copyP = document.querySelector('footer p:last-child, footer .text-\\[11px\\], footer .text-white\\/50');
+    if (copyP && !document.getElementById('ap-footer-lock')) {
+      const btn = document.createElement('button');
+      btn.id = 'ap-footer-lock';
+      btn.type = 'button';
+      btn.innerHTML = '🔒';
+      btn.title = 'Acesso Administrativo (Erlane Mota)';
+      btn.style.cssText = 'background: none; border: none; font-size: 13px; cursor: pointer; opacity: 0.45; margin-left: 8px; vertical-align: middle; color: #C9A86A;';
+      btn.onclick = function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.openAdminLogin();
+      };
+      copyP.appendChild(btn);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectAPAdminModals);
+  } else {
+    injectAPAdminModals();
+  }
+  setTimeout(injectAPAdminModals, 500);
+  setTimeout(injectAPAdminModals, 1500);
+
+// PERSISTÊNCIA ZERO DO SIMULADOR E SEEDS — REGRA DO CLIENTE
 try {
   if (typeof window !== 'undefined') {
+    // 1. Purga de Caches Antigos do Service Worker
+    if (window.caches) {
+      caches.keys().then(function(keys) {
+        keys.forEach(function(k) {
+          if (k !== 'consultoriapatrimonialap-v20261120') {
+            caches.delete(k);
+          }
+        });
+      }).catch(function() {});
+    }
+    // 2. Limpar qualquer estado salvo ou mock do simulador para sempre abrir zerado/padrão
     if (window.localStorage) {
-      window.localStorage.clear();
-      window.localStorage.setItem = function() {};
+      localStorage.removeItem('sim_age');
+      localStorage.removeItem('sim_credit');
+      localStorage.removeItem('sim_months');
+      localStorage.removeItem('sim_currency');
+      localStorage.removeItem('sim_state');
+      localStorage.removeItem('kce_seeded_leads');
+      localStorage.removeItem('setItem');
     }
     if (window.sessionStorage) {
-      window.sessionStorage.clear();
-      window.sessionStorage.setItem = function() {};
+      sessionStorage.removeItem('sim_age');
+      sessionStorage.removeItem('sim_credit');
+      sessionStorage.removeItem('sim_months');
+      sessionStorage.removeItem('sim_currency');
+      sessionStorage.removeItem('sim_state');
+      sessionStorage.removeItem('setItem');
     }
   }
 } catch (e) {}
@@ -328,10 +444,10 @@ try {
       '</div>'
     ].join('\n');
 
-    var host = document.getElementById('simulador-host');
-    if (host && host.parentNode) {
-      host.parentNode.insertBefore(section, host);
-      host.remove();
+    // REORDENAÇÃO MESTRE: Simulador acima do Formulário, FAQ acima do Rodapé!
+    var diag = document.getElementById('diagnostico');
+    if (diag && diag.parentNode) {
+      diag.parentNode.insertBefore(section, diag);
     } else {
       var footer = document.querySelector('footer');
       if (footer && footer.parentNode) {
@@ -339,6 +455,15 @@ try {
       } else {
         document.body.appendChild(section);
       }
+    }
+
+    var host = document.getElementById('simulador-host');
+    if (host) host.remove();
+
+    var faq = document.getElementById('faq');
+    var footer = document.querySelector('footer');
+    if (faq && footer && footer.parentNode && faq.nextSibling !== footer) {
+      footer.parentNode.insertBefore(faq, footer);
     }
 
     updateSimulatorUI();
