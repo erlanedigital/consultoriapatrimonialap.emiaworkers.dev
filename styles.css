@@ -2997,3 +2997,16 @@ h1, h2, h3, h4, h5, h6, .fluid-h1, .fluid-h2 {
 p, span, li, blockquote {
   text-wrap: pretty !important;
 }
+
+
+/* PURGE SIMULATOR - ZERO PERSISTENCE */
+#simulador, #simulador-host, .sim-container, [id*="simulador"] {
+  display: none !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
